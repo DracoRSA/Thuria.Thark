@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Johan Dercksen</Authors>
+    <Company>Draco</Company>
+    <Product>Thuria</Product>
+    <PackageLicenseUrl>https://github.com/DracoRSA/Thuria.Thark</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/DracoRSA/Thuria.Thark</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DracoRSA/Thuria.Thark</RepositoryUrl>
+    <PackageTags>Thuria DataAccess ORM SQLStatementBuilder</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Draco\Thuria.Thark\src\Thuria.Thark.StatementBuilder\Thuria.Thark.StatementBuilder.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -12,7 +12,20 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Draco\Thuria.Thark\src\Thuria.Thark.Core\Thuria.Thark.Core.xml</DocumentationFile>
+    <DocumentationFile>D:\Draco\Thuria.Thark\src\Thuria.Thark.DataAccess\Thuria.Thark.DataAccess.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Thuria.Thark.Core\Thuria.Thark.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="Providers\" />
+  </ItemGroup>
 
 </Project>
