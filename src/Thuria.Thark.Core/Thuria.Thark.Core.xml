@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Thuria.Thark.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Thuria.Thark.Core.DataAccess.TransactionIsolation">
+            <summary>
+            Transaction Isolation option enumeration
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.Core.DataAccess.TransactionIsolation.Chaos">
+            <summary>
+            Chaos 
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.Core.DataAccess.TransactionIsolation.ReadCommitted">
+            <summary>
+            Read Committed
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.Core.DataAccess.TransactionIsolation.ReadUncommitted">
+            <summary>
+            Read Uncommitted
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.Core.DataAccess.TransactionIsolation.RepeatableRead">
+            <summary>
+            Repeatable Read
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.Core.DataAccess.TransactionIsolation.Serializable">
+            <summary>
+            Serializable
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.Core.DataAccess.TransactionIsolation.Snapshot">
+            <summary>
+            Snapshot
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.Core.DataAccess.TransactionIsolation.Unspecified">
+            <summary>
+            Unspecified
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.Core.DataAccess.IDatabaseBuilder">
+            <summary>
+            Database Builder
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseBuilder.WithDatabaseProviderType(Thuria.Thark.Core.Statement.DatabaseProviderType)">
+            <summary>
+            Specify the Database Provider to use
+            </summary>
+            <param name="databaseProviderType">Database Provider Type</param>
+            <returns>An instance of the Database Builder</returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseBuilder.WithCommandTimeout(System.Int32)">
+            <summary>
+            Specify the Command Timeout
+            </summary>
+            <param name="newCommandTimeout">Command Timeout</param>
+            <returns>An instance of the Database Builder</returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseBuilder.WithConnectionString(System.String)">
+            <summary>
+            Specify the Connection String
+            </summary>
+            <param name="connectionString">Connection String</param>
+            <returns>An instance of the Database Builder</returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseBuilder.AsReadonly">
+            <summary>
+            Specify to build a Readonly Database Context
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseBuilder.Build">
+            <summary>
+            Build
+            </summary>
+            <returns>An instance of the newly created Database Context</returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseBuilder.BuildReadonly">
+            <summary>
+            Build a Readonly Database Context
+            </summary>
+            <returns>An instance of a Readonly Database Context</returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseBuilder.BuildReadWrite">
+            <summary>
+            Build a Read Write Database Context
+            </summary>
+            <returns>An instance of a read/write Database Context</returns>
+        </member>
+        <member name="T:Thuria.Thark.Core.DataAccess.IDatabaseContext">
+            <summary>
+            Database Context
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.Core.DataAccess.IDatabaseContext.DbConnection">
+            <summary>
+            Database Connection
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.Core.DataAccess.IDatabaseContext.DatabaseTransactionProvider">
+            <summary>
+            Database  Transaction Manager
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.Core.DataAccess.IDatabaseContext.CommandTimeout">
+            <summary>
+            Command Timeout
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseContext.ExecuteSqlStatement(System.String,System.Object)">
+            <summary>
+            Execute SQL Statement
+            </summary>
+            <param name="statementToExecute">Sql Statement to execute</param>
+            <param name="sqlParameters">SQL Parameters</param>
+            <returns>An integer specifying the number of rows affected</returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseContext.Complete">
+            <summary>
+            Complete the transaction
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.Core.DataAccess.IDatabaseTransactionProvider">
+            <summary>
+            Database Transaction Provider
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseTransactionProvider.Start(System.Transactions.TransactionScopeOption,Thuria.Thark.Core.DataAccess.TransactionIsolation,System.Int32)">
+            <summary>
+            Start the Transaction
+            </summary>
+            <param name="transactionScopeOption">Transaction Scope Option</param>
+            <param name="transactionIsolation">Transaction Isolation</param>
+            <param name="transactionTimespan">Transaction Timespan</param>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseTransactionProvider.Complete">
+            <summary>
+            Complete the Transaction
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IDatabaseTransactionProvider.Abort">
+            <summary>
+            Abort the Transaction
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.Core.DataAccess.IReadonlyDatabaseContext">
+            <summary>
+            readonly Database Context
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IReadonlyDatabaseContext.Select``1(System.String)">
+            <summary>
+            Retrieve a list from the database and return a list of mapped objects
+            </summary>
+            <typeparam name="T">Object Type</typeparam>
+            <param name="sqlStatement">SQL Statement</param>
+            <returns>A list of mapped objects</returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IReadonlyDatabaseContext.SelectOne``1(System.String)">
+            <summary>
+            Return a single mapped object of the specified type
+            </summary>
+            <typeparam name="T">Object Type</typeparam>
+            <param name="sqlStatement">SQL Statement</param>
+            <returns>Single mapped object of the specified type</returns>
+        </member>
+        <member name="T:Thuria.Thark.Core.DataAccess.IReadWriteDatabaseContext">
+            <summary>
+            Read / Write Database Context
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IReadWriteDatabaseContext.Insert``1(System.String)">
+            <summary>
+            Insert an object into the database
+            </summary>
+            <typeparam name="T">Object Type</typeparam>
+            <param name="sqlStatement">SQL Statement</param>
+            <returns>Newly created object</returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IReadWriteDatabaseContext.Update``1(System.String)">
+            <summary>
+            Update an existing object in the database
+            </summary>
+            <typeparam name="T">Object Type</typeparam>
+            <param name="sqlStatement">SQL Statement</param>
+            <returns>Number of rows affected</returns>
+        </member>
+        <member name="M:Thuria.Thark.Core.DataAccess.IReadWriteDatabaseContext.Delete``1(System.String)">
+            <summary>
+            Delete an existing object in the database
+            </summary>
+            <typeparam name="T">Object Type</typeparam>
+            <param name="sqlStatement">SQL Statement</param>
+        </member>
+    </members>
+</doc>

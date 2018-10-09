@@ -16,7 +16,7 @@ namespace Thuria.Thark.Core.DataAccess
     /// <summary>
     /// Database  Transaction Manager
     /// </summary>
-    IDatabaseTransactionManager DatabaseTransactionManager { get; }
+    IDatabaseTransactionProvider DatabaseTransactionProvider { get; }
 
     /// <summary>
     /// Command Timeout

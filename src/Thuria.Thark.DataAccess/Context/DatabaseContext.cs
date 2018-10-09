@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Data;
 
+using Dapper;
+
 using Thuria.Thark.Core.DataAccess;
 
-namespace Thuria.Thark.DataAccess
+namespace Thuria.Thark.DataAccess.Context
 {
   /// <inheritdoc />
   public abstract class DatabaseContext : IDatabaseContext
@@ -14,11 +16,11 @@ namespace Thuria.Thark.DataAccess
     /// Construct a new Database Context
     /// </summary>
     /// <param name="dbConnection">DB Connection</param>
-    /// <param name="databaseTransactionManager">Database Transaction Manager</param>
-    protected DatabaseContext(IDbConnection dbConnection, IDatabaseTransactionManager databaseTransactionManager)
+    /// <param name="databaseTransactionProvider">Database Transaction Manager</param>
+    protected DatabaseContext(IDbConnection dbConnection, IDatabaseTransactionProvider databaseTransactionProvider)
     {
       DbConnection               = dbConnection ?? throw new ArgumentNullException(nameof(dbConnection));
-      DatabaseTransactionManager = databaseTransactionManager ?? throw new ArgumentNullException(nameof(databaseTransactionManager));
+      DatabaseTransactionProvider = databaseTransactionProvider ?? throw new ArgumentNullException(nameof(databaseTransactionProvider));
     }
 
     /// <summary>
@@ -27,8 +29,8 @@ namespace Thuria.Thark.DataAccess
     public void Dispose()
     {
       if (_isDisposing) { return; }
-
       _isDisposing = true;
+
       if (DbConnection != null)
       {
         DbConnection.Close();
@@ -36,30 +38,32 @@ namespace Thuria.Thark.DataAccess
         DbConnection = null;
       }
 
-      if (DatabaseTransactionManager != null)
+      if (DatabaseTransactionProvider != null)
       {
-        DatabaseTransactionManager.Dispose();
-        DatabaseTransactionManager = null;
+        DatabaseTransactionProvider.Dispose();
+        DatabaseTransactionProvider = null;
       }
     }
 
     /// <inheritdoc />
     public IDbConnection DbConnection { get; private set; }
+
     /// <inheritdoc />
-    public IDatabaseTransactionManager DatabaseTransactionManager { get; private set; }
+    public IDatabaseTransactionProvider DatabaseTransactionProvider { get; private set; }
+
     /// <inheritdoc />
     public int CommandTimeout { get; set; } = 30;
 
     /// <inheritdoc />
     public virtual int ExecuteSqlStatement(string statementToExecute, dynamic sqlParameters = null)
     {
-      return DbConnection.Execute(statementToExecute, (object)sqlParameters, commandTimeout: this.CommandTimeout);
+      return DbConnection.Execute(statementToExecute, (object)sqlParameters, commandTimeout: CommandTimeout);
     }
 
     /// <inheritdoc />
     public void Complete()
     {
-      DatabaseTransactionManager?.Complete();
+      DatabaseTransactionProvider?.Complete();
     }
   }
 }

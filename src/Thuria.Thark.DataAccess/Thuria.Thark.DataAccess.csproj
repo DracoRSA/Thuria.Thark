@@ -23,9 +23,4 @@
     <ProjectReference Include="..\Thuria.Thark.Core\Thuria.Thark.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Context\" />
-    <Folder Include="Providers\" />
-  </ItemGroup>
-
 </Project>

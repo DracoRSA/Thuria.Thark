@@ -4,9 +4,9 @@ using System.Transactions;
 namespace Thuria.Thark.Core.DataAccess
 {
   /// <summary>
-  /// Database Transaction Manager
+  /// Database Transaction Provider
   /// </summary>
-  public interface IDatabaseTransactionManager : IDisposable
+  public interface IDatabaseTransactionProvider : IDisposable
   {
     /// <summary>
     /// Start the Transaction

@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Thuria.Thark.DataAccess</name>
+    </assembly>
+    <members>
+        <member name="T:Thuria.Thark.DataAccess.Builders.DatabaseBuilder">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.#ctor">
+            <summary>
+            Private Constructor for Database Builder
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.Create">
+            <summary>
+            Create a new Database Builder object
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.WithDatabaseProviderType(Thuria.Thark.Core.Statement.DatabaseProviderType)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.WithCommandTimeout(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.WithConnectionString(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.AsReadonly">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.Build">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.BuildReadonly">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.BuildReadWrite">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.DataAccess.Context.DatabaseContext">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.DatabaseContext.#ctor(System.Data.IDbConnection,Thuria.Thark.Core.DataAccess.IDatabaseTransactionProvider)">
+            <summary>
+            Construct a new Database Context
+            </summary>
+            <param name="dbConnection">DB Connection</param>
+            <param name="databaseTransactionProvider">Database Transaction Manager</param>
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.DatabaseContext.Dispose">
+            <summary>
+            Dispose the Database Context
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataAccess.Context.DatabaseContext.DbConnection">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.DataAccess.Context.DatabaseContext.DatabaseTransactionProvider">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.DataAccess.Context.DatabaseContext.CommandTimeout">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.DatabaseContext.ExecuteSqlStatement(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.DatabaseContext.Complete">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.DataAccess.Context.ReadonlyDatabaseContext">
+            <summary>
+            Readonly Database Context
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.ReadonlyDatabaseContext.#ctor(System.Data.IDbConnection,Thuria.Thark.Core.DataAccess.IDatabaseTransactionProvider)">
+            <summary>
+            Construct a Readonly Database Context
+            </summary>
+            <param name="dbConnection">Db Connection</param>
+            <param name="databaseTransactionProvider">Database Transaction Manager</param>
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.ReadonlyDatabaseContext.Select``1(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.ReadonlyDatabaseContext.SelectOne``1(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.DataAccess.Context.ReadWriteDatabaseContext">
+            <summary>
+            Read / Write Database Context
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.ReadWriteDatabaseContext.#ctor(System.Data.IDbConnection,Thuria.Thark.Core.DataAccess.IDatabaseTransactionProvider)">
+            <summary>
+            Construct Read / Write Database Context
+            </summary>
+            <param name="dbConnection">Db Connection</param>
+            <param name="databaseTransactionProvider">Database Transaction Manager</param>
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.ReadWriteDatabaseContext.Insert``1(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.ReadWriteDatabaseContext.Update``1(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Context.ReadWriteDatabaseContext.Delete``1(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.DataAccess.Providers.NullDatabaseTransactionScopeProvider">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Providers.NullDatabaseTransactionScopeProvider.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Providers.NullDatabaseTransactionScopeProvider.Start(System.Transactions.TransactionScopeOption,Thuria.Thark.Core.DataAccess.TransactionIsolation,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Providers.NullDatabaseTransactionScopeProvider.Complete">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Providers.NullDatabaseTransactionScopeProvider.Abort">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
