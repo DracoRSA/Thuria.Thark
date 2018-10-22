@@ -5,7 +5,7 @@
     <Authors>Johan Dercksen</Authors>
     <Company>Draco</Company>
     <Product>Thuria</Product>
-    <PackageLicenseUrl>https://github.com/DracoRSA/Thuria.Thark</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/DracoRSA/Thuria.Thark/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/DracoRSA/Thuria.Thark</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DracoRSA/Thuria.Thark</RepositoryUrl>
     <PackageTags>Thuria DataAccess ORM</PackageTags>

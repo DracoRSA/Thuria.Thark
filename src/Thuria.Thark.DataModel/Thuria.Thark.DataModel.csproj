@@ -8,19 +8,15 @@
     <PackageLicenseUrl>https://github.com/DracoRSA/Thuria.Thark/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/DracoRSA/Thuria.Thark</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DracoRSA/Thuria.Thark</RepositoryUrl>
-    <PackageTags>Thuria DataAccess ORM</PackageTags>
+    <PackageTags>Thuria Thark DataAccess ORM</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Draco\Thuria.Thark\src\Thuria.Thark.DataAccess\Thuria.Thark.DataAccess.xml</DocumentationFile>
+    <DocumentationFile>D:\Draco\Thuria.Thark\src\Thuria.Thark.DataModel\Thuria.Thark.DataModel.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Thuria.Thark.Core\Thuria.Thark.Core.csproj" />
+    <PackageReference Include="Thuria.Zitidar.Extensions" Version="0.0.11-beta" />
   </ItemGroup>
 
 </Project>

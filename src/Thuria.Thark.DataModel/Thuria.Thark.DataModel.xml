@@ -1,0 +1,317 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Thuria.Thark.DataModel</name>
+    </assembly>
+    <members>
+        <member name="T:Thuria.Thark.DataModel.Attributes.ThuriaColumnAttribute">
+            <summary>
+            Thuria Column Attribute
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.Attributes.ThuriaColumnAttribute.#ctor(System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Thuria Colum Attribute Constructor
+            </summary>
+            <param name="columnName">Column Name in Database to map the property to</param>
+            <param name="columnAlias">Column Alias (Optional)</param>
+            <param name="isPrimaryKey">Primary Key indicator</param>
+            <param name="isInsertColumn">Insert Column indicator (Default False)</param>
+            <param name="isUpdateColumn">Update Column (Default False)</param>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaColumnAttribute.ColumnName">
+            <summary>
+            Database Column Name
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaColumnAttribute.Alias">
+            <summary>
+            Column Alias
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaColumnAttribute.IsPrimaryKey">
+            <summary>
+            Primary Key indicator
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaColumnAttribute.IsInsertColumn">
+            <summary>
+            Insert Column indicator
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaColumnAttribute.IsUpdateColumn">
+            <summary>
+            Update Column indicator
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaColumnAttribute.PropertyName">
+            <summary>
+            Property Name
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.Attributes.ThuriaColumnAttribute.SetPropertyName(System.String)">
+            <summary>
+            Set Property Name
+            </summary>
+            <param name="propertyName">Property Name</param>
+            <returns>The current attribute</returns>
+        </member>
+        <member name="T:Thuria.Thark.DataModel.Attributes.ThuriaConditionColumnAttribute">
+            <summary>
+            Thuria Condition Column Attribute
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.Attributes.ThuriaConditionColumnAttribute.#ctor(Thuria.Thark.DataModel.TharkAction,System.Boolean)">
+            <summary>
+            Thuria Condition Column Attribute constructor
+            </summary>
+            <param name="tharkAction">Thark Action</param>
+            <param name="isRequired">Required indicator (Default True)</param>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaConditionColumnAttribute.TharkAction">
+            <summary>
+            Thark Action
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaConditionColumnAttribute.IsRequired">
+            <summary>
+            Required Indicator
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.DataModel.Attributes.ThuriaIgnoreAttribute">
+            <summary>
+            Thuria Ignore Attribute
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.DataModel.Attributes.ThuriaRelationshipAttribute">
+            <summary>
+            Thuria Relationship Attribute
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.Attributes.ThuriaRelationshipAttribute.#ctor(System.String,Thuria.Thark.DataModel.TharkRelationshipType,System.String,System.String,System.Boolean)">
+            <summary>
+            Thuria Relationship Attribute constructor
+            </summary>
+            <param name="relationshipName">Relationship Name</param>
+            <param name="relationshipType">Relationship Type</param>
+            <param name="keyFieldName">Key Field Name</param>
+            <param name="foreignKeyFieldName">Foreign Key Field Name</param>
+            <param name="loadExplicitly">Load Explicitly indicator</param>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaRelationshipAttribute.RelationshipName">
+            <summary>
+            Relationship Name
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaRelationshipAttribute.RelationshipType">
+            <summary>
+            Relationship Type
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaRelationshipAttribute.KeyFieldName">
+            <summary>
+            Key Field Name
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaRelationshipAttribute.ForeignKeyFieldName">
+            <summary>
+            Foreign Key Field Name
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaRelationshipAttribute.LoadExplicitly">
+            <summary>
+            Load Explicitly indicator
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaRelationshipAttribute.PropertyName">
+            <summary>
+            Property Name
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.DataModel.Attributes.ThuriaTableAttribute">
+            <summary>
+            Thuria Table Attribute
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.Attributes.ThuriaTableAttribute.#ctor(System.String)">
+            <summary>
+            Attribute Constructor
+            </summary>
+            <param name="tableName">Table Name</param>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Attributes.ThuriaTableAttribute.TableName">
+            <summary>
+            Table Name to map data from
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.DataModel.TharkAction">
+            <summary>
+            Thark Action enumeration
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.DataModel.TharkAction.None">
+            <summary>
+            No Action
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.DataModel.TharkAction.Retrieve">
+            <summary>
+            Retrieve Data Action
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.DataModel.TharkAction.Insert">
+            <summary>
+            Insert Data Action
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.DataModel.TharkAction.Update">
+            <summary>
+            Update Data Action
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.DataModel.TharkAction.Delete">
+            <summary>
+            Delete Data Action
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.DataModel.TharkRelationshipType">
+            <summary>
+            Relationship Type
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.DataModel.TharkRelationshipType.OneToOne">
+            <summary>
+            One to One
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.DataModel.TharkRelationshipType.OneToMany">
+            <summary>
+            One To Many
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.DataModel.Models.ThuriaDataModelConditionMetadata">
+            <summary>
+            Thuria Data Model Condition Metadata
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.Models.ThuriaDataModelConditionMetadata.#ctor(System.String,System.Boolean,System.Object)">
+            <summary>
+            Thuria Data Model Condition Metadata constructor
+            </summary>
+            <param name="columnName">Column Name</param>
+            <param name="isRequired">Required indicator</param>
+            <param name="value">Condition Value</param>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Models.ThuriaDataModelConditionMetadata.ColumnName">
+            <summary>
+            Column Name
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Models.ThuriaDataModelConditionMetadata.IsRequired">
+            <summary>
+            Required indicator
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Models.ThuriaDataModelConditionMetadata.Value">
+            <summary>
+            Condition Value
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.DataModel.Models.ThuriaDataModelRelationshipMetadata">
+            <summary>
+            Thuria Data Model Relationship Metadata
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.Models.ThuriaDataModelRelationshipMetadata.#ctor(System.String,System.Object,Thuria.Thark.DataModel.Attributes.ThuriaRelationshipAttribute)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parentPropertyName">Parent Property Name</param>
+            <param name="dataModel">Data Model</param>
+            <param name="relationship">Relationship Attribute</param>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Models.ThuriaDataModelRelationshipMetadata.ParentPropertyName">
+            <summary>
+            Parent Property Name
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Models.ThuriaDataModelRelationshipMetadata.DataModel">
+            <summary>
+            Data Model
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Models.ThuriaDataModelRelationshipMetadata.Relationship">
+            <summary>
+            Relationship Attribute
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataModel.Models.ThuriaDataModelRelationshipMetadata.KeyValue">
+            <summary>
+            Key Value
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.DataModel.ThuriaDataModelExtensions">
+            <summary>
+            Thuria DataModel Extension Methods
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.ThuriaDataModelExtensions.GetThuriaDataModelTableName(System.Object)">
+            <summary>
+            Retrieve the Thuria Database Table Name of the provided Data Model
+            </summary>
+            <param name="dataModel">Data Model</param>
+            <returns>
+            This will return one of the following:
+              * If the Thuria Table Attribute is set on the data model, the name specified in the attribute or
+              * The name of the data model class
+            </returns>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.ThuriaDataModelExtensions.GetThuriaDataModelColumnName(System.Object,System.String)">
+            <summary>
+            Retrieve the Thuria Database Column metadata if the given Data Model's specified property
+            </summary>
+            <param name="dataModel">Data Model</param>
+            <param name="propertyName">Property Name</param>
+            <returns>The Thuria Column Attribute associated with the specified property</returns>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.ThuriaDataModelExtensions.GetThuriaDataModelColumns(System.Object,Thuria.Thark.DataModel.TharkAction)">
+            <summary>
+            Retrieve the Given Data Models Columns based on the Action to be performed
+            </summary>
+            <param name="dataModel">Data Model</param>
+            <param name="tharkAction">Thark Action</param>
+            <returns>A list of Column Attributes for the specified Thark Action</returns>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.ThuriaDataModelExtensions.GetThuriaDataModelPrimaryKey(System.Object)">
+            <summary>
+            Retrieve the Primary Key Column on a given Data Model
+            </summary>
+            <param name="dataModel">Data Model</param>
+            <returns>
+            A null if no Primary key has been specified or a ThuriaColumnAttribute representing the Primary Key of the Data Model
+            </returns>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.ThuriaDataModelExtensions.GetThuriaDataModelConditions(System.Object,Thuria.Thark.DataModel.TharkAction)">
+            <summary>
+            Retrieve the Conditions for a given Data Model for a specific Thark Action
+            </summary>
+            <param name="dataModel">Data Model</param>
+            <param name="tharkAction">Thark Action</param>
+            <returns></returns>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.ThuriaDataModelExtensions.GetThuriaDataModelRelationships(System.Object)">
+            <summary>
+            Retrieve the Relationships associated with the given Data Model
+            </summary>
+            <param name="dataModel">Data Model</param>
+            <returns>A list of relationships (if any) associated with the Data Model</returns>
+        </member>
+        <member name="M:Thuria.Thark.DataModel.ThuriaDataModelExtensions.GetThuriaPopulatedRelationshipMetadata(System.Object)">
+            <summary>
+            Retrieve the Thuria Populated Relationship from a given Data Model
+            </summary>
+            <param name="dataModel">Data Model</param>
+            <returns>A list of the Relationships Metadata</returns>
+        </member>
+    </members>
+</doc>
