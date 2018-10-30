@@ -9,35 +9,44 @@ using Thuria.Thark.StatementBuilder.Models;
 
 namespace Thuria.Thark.StatementBuilder.Builders
 {
+  /// <summary>
+  /// Insert Statement Builder
+  /// </summary>
   public class InsertStatementBuilder : StatementBuilderBase, IInsertStatementBuilder
   {
     private string _insertTableName;
     private IColumnModel _idColumn;
     private readonly Dictionary<IColumnModel, object> _insertColumns;
 
+    /// <summary>
+    /// Insert Statement Builder constructor
+    /// </summary>
     protected InsertStatementBuilder()
     {
       _insertColumns = new Dictionary<IColumnModel, object>();
     }
 
+    /// <summary>
+    /// Create a new instance of the Insert Statement Builder
+    /// </summary>
     // ReSharper disable once UnusedMember.Global
-    public static IInsertStatementBuilder Create()
-    {
-      return new InsertStatementBuilder();
-    }
+    public static IInsertStatementBuilder Create => new InsertStatementBuilder();
 
+    /// <inheritdoc />
     public new IInsertStatementBuilder WithDatabaseProvider(DatabaseProviderType databaseProvider)
     {
       UpdateDatabaseProvider(databaseProvider);
       return this;
     }
 
+    /// <inheritdoc />
     public IInsertStatementBuilder WithTable(string tableName)
     {
       _insertTableName = tableName;
       return this;
     }
 
+    /// <inheritdoc />
     public IInsertStatementBuilder WithIdColumn(string columnName)
     {
       var columnModel = new ColumnModel(columnName)
@@ -48,6 +57,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public IInsertStatementBuilder WithColumn(string columnName, object columnValue)
     {
       var columnModel = new ColumnModel(columnName)
@@ -58,6 +68,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public override string Build()
     {
       if (!ValidateStatementRequirement())
@@ -107,6 +118,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return insertStatement.ToString();
     }
 
+    /// <inheritdoc />
     public override void DatabaseProviderChanged()
     {
       foreach (var currentColumn in _insertColumns)
@@ -115,6 +127,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       }
     }
 
+    /// <inheritdoc />
     protected override bool ValidateStatementRequirement()
     {
       base.ValidateStatementRequirement();

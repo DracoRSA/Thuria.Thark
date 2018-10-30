@@ -10,6 +10,9 @@ using Thuria.Thark.StatementBuilder.Models;
 
 namespace Thuria.Thark.StatementBuilder.Builders
 {
+  /// <summary>
+  /// Select Statement Builder
+  /// </summary>
   public class SelectStatementBuilder : StatementBuilderBase, ISelectStatementBuilder
   {
     private readonly List<ITableModel> _selectTables        = new List<ITableModel>();
@@ -17,27 +20,34 @@ namespace Thuria.Thark.StatementBuilder.Builders
     private readonly List<IConditionModel> _whereConditions = new List<IConditionModel>();
     private readonly List<string> _rawWhereConditions       = new List<string>();
 
+    /// <summary>
+    /// Select Statement Builder constructor
+    /// </summary>
     protected SelectStatementBuilder()
     {
     }
 
+    /// <summary>
+    /// Create a new instance of the SelectStatementBuilder
+    /// </summary>
+    /// <returns>A new instance of the SelectStatementBuilder</returns>
     // ReSharper disable once UnusedMember.Global
-    public static ISelectStatementBuilder Create()
-    {
-      return new SelectStatementBuilder();
-    }
+    public static ISelectStatementBuilder Create => new SelectStatementBuilder();
 
+    /// <inheritdoc />
     public new ISelectStatementBuilder WithDatabaseProvider(DatabaseProviderType databaseProvider)
     {
       UpdateDatabaseProvider(databaseProvider);
       return this;
     }
 
+    /// <inheritdoc />
     public ISelectStatementBuilder WithTable(string tableName, string tableAlias = null)
     {
       return WithTable(new TableModel(tableName, tableAlias));
     }
 
+    /// <inheritdoc />
     public ISelectStatementBuilder WithTable(ITableModel tableModel)
     {
       if (_selectTables.Any((model) => model.TableName == tableModel.TableName))
@@ -50,11 +60,13 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public ISelectStatementBuilder WithColumn(string statementColumn, string columnAlias = null)
     {
       return WithColumn(new ColumnModel(string.Empty, statementColumn, columnAlias));
     }
 
+    /// <inheritdoc />
     public ISelectStatementBuilder WithColumn(IColumnModel statementColumn)
     {
       if (statementColumn == null) { throw new ArgumentNullException(nameof(statementColumn)); }
@@ -64,11 +76,13 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public ISelectStatementBuilder WithWhereCondition(string sourceTable, string sourceColumnName, EqualityOperators equalityOperator, object conditionValue = null)
     {
       return WithWhereCondition(new ConditionModel(sourceTable, sourceColumnName, equalityOperator, conditionValue));
     }
 
+    /// <inheritdoc />
     public ISelectStatementBuilder WithWhereCondition(IConditionModel whereCondition)
     {
       if (whereCondition == null) { throw new ArgumentNullException(nameof(whereCondition)); }
@@ -78,6 +92,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public ISelectStatementBuilder WithWhereCondition(string rawWhereCondition)
     {
       if (string.IsNullOrWhiteSpace(rawWhereCondition)) { throw new ArgumentNullException(nameof(rawWhereCondition)); }
@@ -86,6 +101,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public override string Build()
     {
       if (!ValidateStatementRequirement())
@@ -103,6 +119,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return selectStatement.ToString();
     }
 
+    /// <inheritdoc />
     public override void DatabaseProviderChanged()
     {
       foreach (var selectTable in _selectTables)
@@ -121,6 +138,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       }
     }
 
+    /// <inheritdoc />
     protected override bool ValidateStatementRequirement()
     {
       base.ValidateStatementRequirement();

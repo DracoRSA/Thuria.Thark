@@ -11,6 +11,9 @@ using Thuria.Thark.StatementBuilder.Providers;
 
 namespace Thuria.Thark.StatementBuilder.Builders
 {
+  /// <summary>
+  /// Condition Builder
+  /// </summary>
   public class ConditionBuilder : IConditionBuilder
   {
     private int _conditionNumber;
@@ -24,11 +27,13 @@ namespace Thuria.Thark.StatementBuilder.Builders
       _buildConditions  = new Dictionary<int, object>();
     }
 
-    public static IConditionBuilder Create()
-    {
-      return new ConditionBuilder();
-    }
+    /// <summary>
+    /// Create a Condition Builder
+    /// </summary>
+    /// <returns>An instance of a Condition Builder</returns>
+    public static IConditionBuilder Create => new ConditionBuilder();
 
+    /// <inheritdoc />
     public IConditionBuilder WithDatabaseProvider(DatabaseProviderType databaseProviderType)
     {
       switch (databaseProviderType)
@@ -49,6 +54,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public IConditionBuilder WithCondition(string sourceTable, string sourceColumn, EqualityOperators equalityOperator, object conditionValue)
     {
       var conditionModel = new ConditionModel(sourceTable, sourceColumn, equalityOperator, conditionValue);
@@ -57,6 +63,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public IConditionBuilder WithCondition(string leftConditionTable, string leftConditionColumn, EqualityOperators equalityOperator,
                                            string rightConditionTable, string rightConditionColumn)
     {
@@ -66,30 +73,35 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public IConditionBuilder WithStartSection()
     {
       _buildConditions.Add(_conditionNumber++, " (");
       return this;
     }
 
+    /// <inheritdoc />
     public IConditionBuilder WithEndSection()
     {
       _buildConditions.Add(_conditionNumber++, ") ");
       return this;
     }
 
+    /// <inheritdoc />
     public IConditionBuilder WithAnd()
     {
       _buildConditions.Add(_conditionNumber++, BooleanOperator.And);
       return this;
     }
 
+    /// <inheritdoc />
     public IConditionBuilder WithOr()
     {
       _buildConditions.Add(_conditionNumber++, BooleanOperator.Or);
       return this;
     }
 
+    /// <inheritdoc />
     public string Build()
     {
       var returnCondition = new StringBuilder();

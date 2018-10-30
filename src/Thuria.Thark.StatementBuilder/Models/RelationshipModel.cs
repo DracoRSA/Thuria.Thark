@@ -3,6 +3,9 @@ using Thuria.Thark.Core.Statement;
 
 namespace Thuria.Thark.StatementBuilder.Models
 {
+  /// <summary>
+  /// Relationship Data Model
+  /// </summary>
   public class RelationshipModel : BaseModel
   {
     private readonly RelationshipType _relationshipType;
@@ -12,6 +15,15 @@ namespace Thuria.Thark.StatementBuilder.Models
     private readonly string _foreignKeyTableName;
     private readonly string _foreignKeyColumnName;
 
+    /// <summary>
+    /// Relationship Data Model constructor
+    /// </summary>
+    /// <param name="relationshipType">Relationship Type</param>
+    /// <param name="keyTableName">Key Table Name</param>
+    /// <param name="keyColumnName">Key Column Name</param>
+    /// <param name="equalityOperator">Equality Operator</param>
+    /// <param name="foreignKeyTableName">Foreign Key Table Name</param>
+    /// <param name="foreignKeyColumnName">Foreign Key Column Name</param>
     public RelationshipModel(RelationshipType relationshipType, string keyTableName, string keyColumnName,
                              EqualityOperators equalityOperator, string foreignKeyTableName, string foreignKeyColumnName)
     {
@@ -23,6 +35,10 @@ namespace Thuria.Thark.StatementBuilder.Models
       _foreignKeyColumnName = foreignKeyColumnName;
     }
 
+    /// <summary>
+    /// Create a string representation of the model
+    /// </summary>
+    /// <returns>A string representation of the model</returns>
     public override string ToString()
     {
       var relationshipCondition = new ColumnConditionModel(_keyTableName, _keyColumnName, _equalityOperator, _foreignKeyTableName, _foreignKeyColumnName)
@@ -40,6 +56,7 @@ namespace Thuria.Thark.StatementBuilder.Models
       }
     }
 
+    /// <inheritdoc />
     public override bool Equals(object compareObject)
     {
       var otherField = compareObject as RelationshipModel;

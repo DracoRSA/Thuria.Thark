@@ -9,22 +9,34 @@ using Thuria.Thark.StatementBuilder.Providers;
 
 namespace Thuria.Thark.StatementBuilder.Builders
 {
+  /// <summary>
+  /// Statement Builder Base
+  /// </summary>
   public abstract class StatementBuilderBase : IStatementBuilder
   {
+    /// <inheritdoc />
     public IDatabaseProvider DatabaseProvider { get; private set; } = new SqlServerDatabaseProvider();
 
+    /// <inheritdoc />
     public List<string> Errors { get; } = new List<string>();
 
+    /// <inheritdoc />
     public IStatementBuilder WithDatabaseProvider(DatabaseProviderType databaseProviderType)
     {
       UpdateDatabaseProvider(databaseProviderType);
       return this;
     }
 
+    /// <inheritdoc />
     public abstract string Build();
 
+    /// <inheritdoc />
     public abstract void DatabaseProviderChanged();
 
+    /// <summary>
+    /// Update the Database Provider to use
+    /// </summary>
+    /// <param name="databaseProviderType">Database Provider Type</param>
     protected void UpdateDatabaseProvider(DatabaseProviderType databaseProviderType)
     {
       if (databaseProviderType == DatabaseProvider.DatabaseProviderType) { return; }
@@ -50,6 +62,10 @@ namespace Thuria.Thark.StatementBuilder.Builders
       DatabaseProviderChanged();
     }
 
+    /// <summary>
+    /// Return a string representing the current Error(s)
+    /// </summary>
+    /// <returns>String representing the current Error(s)</returns>
     protected string GetErrorMessage()
     {
       var errorMessage = new StringBuilder();
@@ -62,10 +78,17 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return errorMessage.ToString();
     }
 
+    /// <summary>
+    /// Validate the Statement Requirements
+    /// </summary>
+    /// <returns>A boolean indicating whether the validation succeeded or not</returns>
     protected virtual bool ValidateStatementRequirement()
     {
       Errors.Clear();
-      if (DatabaseProvider == null) { Errors.Add("Database Provider must be specified"); }
+      if (DatabaseProvider == null)
+      {
+        Errors.Add("Database Provider must be specified");
+      }
 
       return !Errors.Any();
     }

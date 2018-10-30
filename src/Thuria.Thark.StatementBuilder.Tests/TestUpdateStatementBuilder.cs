@@ -1,9 +1,8 @@
 ﻿using System;
 
-using FluentAssertions;
-using Moq;
 using NSubstitute;
 using NUnit.Framework;
+using FluentAssertions;
 
 using Thuria.Thark.Core.Statement;
 using Thuria.Thark.Core.Statement.Builders;
@@ -21,7 +20,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Set up test pack-------------------
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var builder = UpdateStatementBuilder.Create();
+      var builder = UpdateStatementBuilder.Create;
       //---------------Test Result -----------------------
       Assert.IsNotNull(builder);
       Assert.IsInstanceOf<IUpdateStatementBuilder>(builder);
@@ -33,7 +32,10 @@ namespace Thuria.Thark.StatementBuilder.Tests
     public void WithDatabaseProvider_ShouldChangeDatabaseProvider(DatabaseProviderType defaultProviderType, DatabaseProviderType databaseProviderType)
     {
       //---------------Set up test pack-------------------
-      var builder = FakeUpdateStatementBuilder.Create(defaultProviderType) as FakeUpdateStatementBuilder;
+      var builder = (FakeUpdateStatementBuilder) FakeUpdateStatementBuilder.Create;
+      builder.Should().NotBeNull();
+      builder.WithDatabaseProvider(defaultProviderType);
+      builder.HasDatabaseProviderChanged = false;
       //---------------Assert Precondition----------------
       builder.Should().NotBeNull();
       //---------------Execute Test ----------------------
@@ -48,7 +50,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Set up test pack-------------------
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var exception = Assert.Throws<StatementBuilderException>(() => UpdateStatementBuilder.Create().Build());
+      var exception = Assert.Throws<StatementBuilderException>(() => UpdateStatementBuilder.Create.Build());
       //---------------Test Result -----------------------
       StringAssert.Contains("UPDATE Statement Validation errors occurred", exception.Message);
       StringAssert.Contains("Table Name must be specified to create an UPDATE Statement", exception.Message);
@@ -60,7 +62,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Set up test pack-------------------
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var exception = Assert.Throws<StatementBuilderException>(() => UpdateStatementBuilder.Create().WithTable("TestTable").Build());
+      var exception = Assert.Throws<StatementBuilderException>(() => UpdateStatementBuilder.Create.WithTable("TestTable").Build());
       //---------------Test Result -----------------------
       StringAssert.Contains("UPDATE Statement Validation errors occurred", exception.Message);
       StringAssert.Contains("At least one column must be specified to create an UPDATE Statement", exception.Message);
@@ -75,7 +77,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
         // ReSharper disable once ExpressionIsAlwaysNull
-      var exception = Assert.Throws<ArgumentNullException>(() => UpdateStatementBuilder.Create()
+      var exception = Assert.Throws<ArgumentNullException>(() => UpdateStatementBuilder.Create
                                                                                        .WithTable(testTableName)
                                                                                        .WithWhereCondition(whereCondition)
                                                                                        .Build());
@@ -90,7 +92,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var testCondition = Substitute.For<IConditionModel>();
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      UpdateStatementBuilder.Create()
+      UpdateStatementBuilder.Create
                             .WithDatabaseProvider(DatabaseProviderType.Postgres)
                             .WithTable("TestTable")
                             .WithColumn("Id", "Test")
@@ -109,7 +111,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var expectedStatement = $"UPDATE [TestTable] SET [Description] = '{recordDescription}',[IsActive] = 1 WHERE [TestTable].[Id] = '{recordId}'";
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var sqlStatement = UpdateStatementBuilder.Create()
+      var sqlStatement = UpdateStatementBuilder.Create
                               .WithTable("TestTable")
                               .WithColumn("Description", recordDescription)
                               .WithColumn("IsActive", true)
@@ -125,16 +127,9 @@ namespace Thuria.Thark.StatementBuilder.Tests
       {
       }
 
-      public bool HasDatabaseProviderChanged { get; private set; }
+      public bool HasDatabaseProviderChanged { get; set; }
 
-      public static IUpdateStatementBuilder Create(DatabaseProviderType providerType)
-      {
-        var builder = new FakeUpdateStatementBuilder();
-        builder.UpdateDatabaseProvider(providerType);
-        builder.HasDatabaseProviderChanged = false;
-
-        return builder;
-      }
+      public new static IUpdateStatementBuilder Create => new FakeUpdateStatementBuilder();
 
       public override void DatabaseProviderChanged()
       {

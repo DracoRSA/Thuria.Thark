@@ -1,15 +1,14 @@
 ﻿using System;
 
-using Moq;
+using NSubstitute;
 using NUnit.Framework;
 using FluentAssertions;
-using NSubstitute;
+
 using Thuria.Thark.Core.Statement;
 using Thuria.Thark.Core.Statement.Models;
 using Thuria.Thark.StatementBuilder.Models;
 using Thuria.Thark.Core.Statement.Builders;
 using Thuria.Thark.StatementBuilder.Builders;
-using Thuria.Thark.StatementBuilder.Providers;
 
 namespace Thuria.Thark.StatementBuilder.Tests
 {
@@ -22,7 +21,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Set up test pack-------------------
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var exception = Assert.Throws<StatementBuilderException>(() => SelectStatementBuilder.Create().Build());
+      var exception = Assert.Throws<StatementBuilderException>(() => SelectStatementBuilder.Create.Build());
       //---------------Test Result -----------------------
       exception.Message.Should().Contain("At least one table name must be provided");
     }
@@ -33,7 +32,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Set up test pack-------------------
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var selectStatement = SelectStatementBuilder.Create().WithDatabaseProvider(providerType).WithTable(tableName).Build();
+      var selectStatement = SelectStatementBuilder.Create.WithDatabaseProvider(providerType).WithTable(tableName).Build();
       //---------------Test Result -----------------------
       Assert.AreEqual(expectedStatement, selectStatement);
     }
@@ -43,7 +42,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
                                                                          string[][] tableColumns, object[][] whereConditions, string expectedStatement)
     {
       //---------------Set up test pack-------------------
-      var builder = SelectStatementBuilder.Create().WithDatabaseProvider(providerType).WithTable(tableName);
+      var builder = SelectStatementBuilder.Create.WithDatabaseProvider(providerType).WithTable(tableName);
 
       foreach (var currentColumn in tableColumns)
       {
@@ -75,7 +74,11 @@ namespace Thuria.Thark.StatementBuilder.Tests
     public void WithDatabaseProvider_ShouldChangeDatabaseProvider(DatabaseProviderType defaultProviderType, DatabaseProviderType databaseProviderType)
     {
       //---------------Set up test pack-------------------
-      var builder = FakeSelectStatementBuilder.Create(defaultProviderType) as FakeSelectStatementBuilder;
+      var builder = (FakeSelectStatementBuilder)FakeSelectStatementBuilder.Create;
+      builder.Should().NotBeNull();
+
+      builder.WithDatabaseProvider(defaultProviderType);
+      builder.HasDatabaseProviderChanged = false;
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
       // ReSharper disable once PossibleNullReferenceException
@@ -92,7 +95,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var expectedStatement = $"SELECT * FROM [{testTableName}]";
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var selectStatement = SelectStatementBuilder.Create().WithTable(testTableName).Build();
+      var selectStatement = SelectStatementBuilder.Create.WithTable(testTableName).Build();
       //---------------Test Result -----------------------
       Assert.AreEqual(expectedStatement, selectStatement);
     }
@@ -101,11 +104,11 @@ namespace Thuria.Thark.StatementBuilder.Tests
     public void WithTable_GivenSameTable_ShouldReturnStatementWithTableNotDuplicated()
     {
       //---------------Set up test pack-------------------
-      var testTableName = "TestTable";
+      var testTableName     = "TestTable";
       var expectedStatement = $"SELECT * FROM [{testTableName}]";
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var selectStatement = SelectStatementBuilder.Create().WithTable(testTableName).WithTable(testTableName).Build();
+      var selectStatement = SelectStatementBuilder.Create.WithTable(testTableName).WithTable(testTableName).Build();
       //---------------Test Result -----------------------
       Assert.AreEqual(expectedStatement, selectStatement);
     }
@@ -117,7 +120,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var tableModel = Substitute.For<ITableModel>();
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      SelectStatementBuilder.Create().WithDatabaseProvider(DatabaseProviderType.Postgres).WithTable(tableModel).Build();
+      SelectStatementBuilder.Create.WithDatabaseProvider(DatabaseProviderType.Postgres).WithTable(tableModel).Build();
       //---------------Test Result -----------------------
       tableModel.DatabaseProvider.DatabaseProviderType.Should().Be(DatabaseProviderType.Postgres);
     }
@@ -129,7 +132,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var testTableName = "TestTable";
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var exception = Assert.Throws<ArgumentNullException>(() => SelectStatementBuilder.Create().WithTable(testTableName).WithColumn(string.Empty).Build());
+      var exception = Assert.Throws<ArgumentNullException>(() => SelectStatementBuilder.Create.WithTable(testTableName).WithColumn(string.Empty).Build());
       //---------------Test Result -----------------------
       Assert.AreEqual("columnName", exception.ParamName);
     }
@@ -141,7 +144,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var testTableName = "TestTable";
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var exception = Assert.Throws<ArgumentNullException>(() => SelectStatementBuilder.Create().WithTable(testTableName).WithColumn(null).Build());
+      var exception = Assert.Throws<ArgumentNullException>(() => SelectStatementBuilder.Create.WithTable(testTableName).WithColumn(null).Build());
       //---------------Test Result -----------------------
       Assert.AreEqual("statementColumn", exception.ParamName);
     }
@@ -153,7 +156,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var testColumn = Substitute.For<IColumnModel>();
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      SelectStatementBuilder.Create()
+      SelectStatementBuilder.Create
                             .WithDatabaseProvider(DatabaseProviderType.Postgres)
                             .WithTable("TestTable")
                             .WithColumn(testColumn)
@@ -171,7 +174,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
       // ReSharper disable once ExpressionIsAlwaysNull
-      var exception = Assert.Throws<ArgumentNullException>(() => SelectStatementBuilder.Create()
+      var exception = Assert.Throws<ArgumentNullException>(() => SelectStatementBuilder.Create
                                                                                        .WithTable(testTableName)
                                                                                        .WithWhereCondition(whereCondition)
                                                                                        .Build());
@@ -186,7 +189,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var testCondition = Substitute.For<IConditionModel>();
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      SelectStatementBuilder.Create()
+      SelectStatementBuilder.Create
                             .WithDatabaseProvider(DatabaseProviderType.Postgres)
                             .WithTable("TestTable")
                             .WithWhereCondition(testCondition)
@@ -201,16 +204,9 @@ namespace Thuria.Thark.StatementBuilder.Tests
       {
       }
 
-      public bool HasDatabaseProviderChanged { get; private set; }
+      public bool HasDatabaseProviderChanged { get; set; }
 
-      public static ISelectStatementBuilder Create(DatabaseProviderType providerType)
-      {
-        var builder = new FakeSelectStatementBuilder();
-        builder.UpdateDatabaseProvider(providerType);
-        builder.HasDatabaseProviderChanged = false;
-
-        return builder;
-      }
+      public new static ISelectStatementBuilder Create => new FakeSelectStatementBuilder { HasDatabaseProviderChanged = false };
 
       public override void DatabaseProviderChanged()
       {

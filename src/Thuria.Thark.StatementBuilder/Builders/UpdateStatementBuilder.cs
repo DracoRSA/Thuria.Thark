@@ -10,6 +10,9 @@ using Thuria.Thark.StatementBuilder.Models;
 
 namespace Thuria.Thark.StatementBuilder.Builders
 {
+  /// <summary>
+  /// Update Statement Builder
+  /// </summary>
   public class UpdateStatementBuilder : StatementBuilderBase, IUpdateStatementBuilder
   {
     private string _updateTableName;
@@ -17,6 +20,9 @@ namespace Thuria.Thark.StatementBuilder.Builders
     private readonly List<IConditionModel> _whereConditions;
     private readonly List<string> _rawWhereConditions;
 
+    /// <summary>
+    /// Update Statement Builder constructpr
+    /// </summary>
     protected UpdateStatementBuilder()
     {
       _updateColumns      = new Dictionary<IColumnModel, object>();
@@ -24,23 +30,27 @@ namespace Thuria.Thark.StatementBuilder.Builders
       _rawWhereConditions = new List<string>();
     }
 
-    public static IUpdateStatementBuilder Create()
-    {
-      return new UpdateStatementBuilder();
-    }
+    /// <summary>
+    /// Create a new instance of the UpdateStatementBuilder
+    /// </summary>
+    /// <returns>A new instance of the UpdateStatementBuilder</returns>
+    public static IUpdateStatementBuilder Create => new UpdateStatementBuilder();
 
+    /// <inheritdoc />
     public new IUpdateStatementBuilder WithDatabaseProvider(DatabaseProviderType databaseProvider)
     {
       UpdateDatabaseProvider(databaseProvider);
       return this;
     }
 
+    /// <inheritdoc />
     public IUpdateStatementBuilder WithTable(string tableName)
     {
       _updateTableName = tableName;
       return this;
     }
 
+    /// <inheritdoc />
     public IUpdateStatementBuilder WithColumn(string columnName, object columnValue)
     {
       var columnModel = new ColumnModel(columnName)
@@ -50,11 +60,14 @@ namespace Thuria.Thark.StatementBuilder.Builders
       _updateColumns.Add(columnModel, columnValue);
       return this;
     }
+
+    /// <inheritdoc />
     public IUpdateStatementBuilder WithWhereCondition(string sourceTable, string sourceColumnName, EqualityOperators equalityOperator, object conditionValue = null)
     {
       return WithWhereCondition(new ConditionModel(sourceTable, sourceColumnName, equalityOperator, conditionValue));
     }
 
+    /// <inheritdoc />
     public IUpdateStatementBuilder WithWhereCondition(IConditionModel whereCondition)
     {
       if (whereCondition == null) { throw new ArgumentNullException(nameof(whereCondition)); }
@@ -64,6 +77,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public IUpdateStatementBuilder WithWhereCondition(string rawWhereCondition)
     {
       if (string.IsNullOrWhiteSpace(rawWhereCondition)) { throw new ArgumentNullException(nameof(rawWhereCondition)); }
@@ -72,6 +86,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+    /// <inheritdoc />
     public override string Build()
     {
       if (!ValidateStatementRequirement())
@@ -101,6 +116,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return updateStatement.ToString();
     }
 
+    /// <inheritdoc />
     public override void DatabaseProviderChanged()
     {
       foreach (var currentField in _updateColumns)
@@ -114,6 +130,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       }
     }
 
+    /// <inheritdoc />
     protected override bool ValidateStatementRequirement()
     {
       base.ValidateStatementRequirement();

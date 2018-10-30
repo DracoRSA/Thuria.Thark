@@ -3,15 +3,24 @@ using Thuria.Thark.Core.Statement;
 
 namespace Thuria.Thark.StatementBuilder
 {
+  /// <summary>
+  /// Data Mapping functionality
+  /// </summary>
   public static class DataMap
   {
-    public static Dictionary<BooleanOperator, string> BooleanOperatorMap = new Dictionary<BooleanOperator, string>
+    /// <summary>
+    /// Boolean Operator Mapping
+    /// </summary>
+    public static readonly Dictionary<BooleanOperator, string> BooleanOperatorMap = new Dictionary<BooleanOperator, string>
       {
         { BooleanOperator.And, " AND " },
         { BooleanOperator.Or, " OR " }
       };
 
-    public static Dictionary<EqualityOperators, string> EqualityOperatorMap = new Dictionary<EqualityOperators, string>
+    /// <summary>
+    /// Equality Operators Mapping
+    /// </summary>
+    public static readonly Dictionary<EqualityOperators, string> EqualityOperatorMap = new Dictionary<EqualityOperators, string>
       {
         { EqualityOperators.Equals, "=" },
         { EqualityOperators.NotEquals, "!=" },

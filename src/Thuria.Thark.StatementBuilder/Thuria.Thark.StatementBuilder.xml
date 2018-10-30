@@ -4,5 +4,493 @@
         <name>Thuria.Thark.StatementBuilder</name>
     </assembly>
     <members>
+        <member name="T:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder">
+            <summary>
+            Condition Builder
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder.Create">
+            <summary>
+            Create a Condition Builder
+            </summary>
+            <returns>An instance of a Condition Builder</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder.WithDatabaseProvider(Thuria.Thark.Core.Statement.DatabaseProviderType)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder.WithCondition(System.String,System.String,Thuria.Thark.Core.Statement.EqualityOperators,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder.WithCondition(System.String,System.String,Thuria.Thark.Core.Statement.EqualityOperators,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder.WithStartSection">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder.WithEndSection">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder.WithAnd">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder.WithOr">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.ConditionBuilder.Build">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder">
+            <summary>
+            Insert Statement Builder
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.#ctor">
+            <summary>
+            Insert Statement Builder constructor
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.Create">
+            <summary>
+            Create a new instance of the Insert Statement Builder
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.WithDatabaseProvider(Thuria.Thark.Core.Statement.DatabaseProviderType)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.WithTable(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.WithIdColumn(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.WithColumn(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.Build">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.DatabaseProviderChanged">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.ValidateStatementRequirement">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder">
+            <summary>
+            Select Statement Builder
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.#ctor">
+            <summary>
+            Select Statement Builder constructor
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.Create">
+            <summary>
+            Create a new instance of the SelectStatementBuilder
+            </summary>
+            <returns>A new instance of the SelectStatementBuilder</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.WithDatabaseProvider(Thuria.Thark.Core.Statement.DatabaseProviderType)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.WithTable(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.WithTable(Thuria.Thark.Core.Statement.Models.ITableModel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.WithColumn(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.WithColumn(Thuria.Thark.Core.Statement.Models.IColumnModel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.WithWhereCondition(System.String,System.String,Thuria.Thark.Core.Statement.EqualityOperators,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.WithWhereCondition(Thuria.Thark.Core.Statement.Models.IConditionModel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.WithWhereCondition(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.Build">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.DatabaseProviderChanged">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.ValidateStatementRequirement">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Builders.StatementBuilderBase">
+            <summary>
+            Statement Builder Base
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Builders.StatementBuilderBase.DatabaseProvider">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Builders.StatementBuilderBase.Errors">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.StatementBuilderBase.WithDatabaseProvider(Thuria.Thark.Core.Statement.DatabaseProviderType)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.StatementBuilderBase.Build">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.StatementBuilderBase.DatabaseProviderChanged">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.StatementBuilderBase.UpdateDatabaseProvider(Thuria.Thark.Core.Statement.DatabaseProviderType)">
+            <summary>
+            Update the Database Provider to use
+            </summary>
+            <param name="databaseProviderType">Database Provider Type</param>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.StatementBuilderBase.GetErrorMessage">
+            <summary>
+            Return a string representing the current Error(s)
+            </summary>
+            <returns>String representing the current Error(s)</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.StatementBuilderBase.ValidateStatementRequirement">
+            <summary>
+            Validate the Statement Requirements
+            </summary>
+            <returns>A boolean indicating whether the validation succeeded or not</returns>
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder">
+            <summary>
+            Update Statement Builder
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.#ctor">
+            <summary>
+            Update Statement Builder constructpr
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.Create">
+            <summary>
+            Create a new instance of the UpdateStatementBuilder
+            </summary>
+            <returns>A new instance of the UpdateStatementBuilder</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.WithDatabaseProvider(Thuria.Thark.Core.Statement.DatabaseProviderType)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.WithTable(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.WithColumn(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.WithWhereCondition(System.String,System.String,Thuria.Thark.Core.Statement.EqualityOperators,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.WithWhereCondition(Thuria.Thark.Core.Statement.Models.IConditionModel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.WithWhereCondition(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.Build">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.DatabaseProviderChanged">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.ValidateStatementRequirement">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.DataMap">
+            <summary>
+            Data Mapping functionality
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.StatementBuilder.DataMap.BooleanOperatorMap">
+            <summary>
+            Boolean Operator Mapping
+            </summary>
+        </member>
+        <member name="F:Thuria.Thark.StatementBuilder.DataMap.EqualityOperatorMap">
+            <summary>
+            Equality Operators Mapping
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Models.BaseModel">
+            <summary>
+            Base Data Model
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.BaseModel.DatabaseProvider">
+            <summary>
+            Database Provider
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.BaseModel.Equals(System.Object)">
+            <summary>
+            Equality implementation
+            </summary>
+            <param name="compareObject">Object to compare the current object to</param>
+            <returns>A boolean indicating equality</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.BaseModel.GetHashCode(System.Object)">
+            <summary>
+            Create a Hash code of the given object
+            </summary>
+            <param name="obj">Object to Hash</param>
+            <returns>A Has representation of the given object</returns>
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Models.ColumnConditionModel">
+            <summary>
+            Column Conditiona Model
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ColumnConditionModel.#ctor(System.String,System.String,Thuria.Thark.Core.Statement.EqualityOperators,System.String,System.String)">
+            <summary>
+            Column Condition Data Model constructor
+            </summary>
+            <param name="sourceTableName">Source Table Name</param>
+            <param name="sourceColumnName">Source Table Column</param>
+            <param name="equalityOperator">Equality Operator to be applied</param>
+            <param name="compareTableName">Comparison Table Name</param>
+            <param name="compareColumnName">Comparison Column Name</param>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.ColumnConditionModel.Quote">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ColumnConditionModel.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ColumnConditionModel.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Models.ColumnModel">
+            <summary>
+            Column Data Model
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ColumnModel.#ctor(System.String)">
+            <summary>
+            Column Data Model constructor
+            </summary>
+            <param name="columnName">Column Name</param>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ColumnModel.#ctor(System.String,System.String)">
+            <summary>
+            Column Data Model constructor
+            </summary>
+            <param name="tableName">Table Name</param>
+            <param name="columnName">Column Name</param>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ColumnModel.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Column Data Model constructor
+            </summary>
+            <param name="tableName">Table Name</param>
+            <param name="columnName">Column Name</param>
+            <param name="fieldAlias">Field Alias</param>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.ColumnModel.TableName">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.ColumnModel.ColumnName">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.ColumnModel.Alias">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ColumnModel.ToString">
+            <summary>
+            Create a string representation of the Column
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ColumnModel.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Models.CompoundConditionModel">
+            <summary>
+            Compound Condition Data Model
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.CompoundConditionModel.#ctor(Thuria.Thark.Core.Statement.Models.IConditionModel,Thuria.Thark.Core.Statement.BooleanOperator,Thuria.Thark.Core.Statement.Models.IConditionModel)">
+            <summary>
+            Compound Condition Data Model constructor
+            </summary>
+            <param name="leftCondition">Left Condition</param>
+            <param name="booleanOperator">Boolean Operator</param>
+            <param name="rightCondition">Right Condition</param>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.CompoundConditionModel.LeftCondition">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.CompoundConditionModel.RightCondition">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.CompoundConditionModel.BooleanOperator">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.CompoundConditionModel.ToString">
+            <summary>
+            Create a string representation of the Compound Condition
+            </summary>
+            <returns>A string representation of the Compound Condition</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.CompoundConditionModel.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Models.ConditionModel">
+            <summary>
+            Condition Data Model
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ConditionModel.#ctor(System.String,System.String,Thuria.Thark.Core.Statement.EqualityOperators,System.Object)">
+            <summary>
+            Condition Data Model constructor
+            </summary>
+            <param name="sourceTableName">Source Table Name</param>
+            <param name="sourceColumnName">Source Column Name</param>
+            <param name="equalityOperator">Equality Operator</param>
+            <param name="conditionValue">Condition Value</param>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.ConditionModel.Quote">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ConditionModel.ToString">
+            <summary>
+            Create a string representation of the model
+            </summary>
+            <returns>A string representation of the model</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.ConditionModel.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Models.RelationshipModel">
+            <summary>
+            Relationship Data Model
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.RelationshipModel.#ctor(Thuria.Thark.Core.Statement.RelationshipType,System.String,System.String,Thuria.Thark.Core.Statement.EqualityOperators,System.String,System.String)">
+            <summary>
+            Relationship Data Model constructor
+            </summary>
+            <param name="relationshipType">Relationship Type</param>
+            <param name="keyTableName">Key Table Name</param>
+            <param name="keyColumnName">Key Column Name</param>
+            <param name="equalityOperator">Equality Operator</param>
+            <param name="foreignKeyTableName">Foreign Key Table Name</param>
+            <param name="foreignKeyColumnName">Foreign Key Column Name</param>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.RelationshipModel.ToString">
+            <summary>
+            Create a string representation of the model
+            </summary>
+            <returns>A string representation of the model</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.RelationshipModel.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Models.TableModel">
+            <summary>
+            Table Data Model
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.TableModel.#ctor(System.String,System.String)">
+            <summary>
+            Table Data Model constructor
+            </summary>
+            <param name="tableName">Table Name</param>
+            <param name="tableAlias">Table Alias</param>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.TableModel.TableName">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Models.TableModel.Alias">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.TableModel.ToString">
+            <summary>
+            Create a string representation of the model
+            </summary>
+            <returns>A string representation of the model</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.Models.TableModel.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Providers.FirebirdDatabaseProvider">
+            <summary>
+            Firebird Database Provider
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Providers.FirebirdDatabaseProvider.DatabaseProviderType">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Providers.FirebirdDatabaseProvider.StatementOpenQuote">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Providers.FirebirdDatabaseProvider.StatementCloseQuote">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Providers.PostgresDatabaseProvider">
+            <summary>
+            Postgres Database Provider
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Providers.PostgresDatabaseProvider.DatabaseProviderType">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Providers.PostgresDatabaseProvider.StatementOpenQuote">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Providers.PostgresDatabaseProvider.StatementCloseQuote">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.Providers.SqlServerDatabaseProvider">
+            <summary>
+            SQL Server Database Provider
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Providers.SqlServerDatabaseProvider.DatabaseProviderType">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Providers.SqlServerDatabaseProvider.StatementOpenQuote">
+            <inheritdoc />
+        </member>
+        <member name="P:Thuria.Thark.StatementBuilder.Providers.SqlServerDatabaseProvider.StatementCloseQuote">
+            <inheritdoc />
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.StatementBuilderException">
+            <summary>
+            Statement Builder Exception
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.StatementBuilderException.#ctor(System.String)">
+            <summary>
+            Statement Builder Exception constructor
+            </summary>
+        </member>
+        <member name="T:Thuria.Thark.StatementBuilder.StatementExtensions">
+            <summary>
+            Statement Extensions
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.StatementExtensions.StatementQuote(System.Object)">
+            <summary>
+            Determine the Quote character to use for a specific data valeu
+            </summary>
+            <param name="dataValue">Data Value</param>
+            <returns>A empty string or the relevant Quote</returns>
+        </member>
+        <member name="M:Thuria.Thark.StatementBuilder.StatementExtensions.StatementValue(System.Object)">
+            <summary>
+            Process the Statement Value
+            </summary>
+            <param name="dataValue">Data Value</param>
+            <returns>The Statement Value</returns>
+        </member>
     </members>
 </doc>

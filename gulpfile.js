@@ -24,9 +24,10 @@ let packNugetPackage = async (currentNugetPackage) => {
     console.log(clc.blueBright('Creating Nuget Package:' + currentNugetPackage.Name));
 
     let packageLocation = currentNugetPackage.Location + '/Thuria.' + currentNugetPackage.Name + '.csproj';
+    let packageVersion = currentNugetPackage.Version + (currentNugetPackage.IsBeta ? '-beta' : '');
     let packConfiguration = {
         configuration: buildSettings.CONFIGURATION,
-        version: currentNugetPackage.Version,
+        version: packageVersion,
         noBuild: true,
         includeSymbols: false,
         output: path.join(buildDir, '/buildoutput/nuget'),

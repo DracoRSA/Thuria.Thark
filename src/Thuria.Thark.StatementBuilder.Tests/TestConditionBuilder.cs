@@ -15,7 +15,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Set up test pack-------------------
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var builder = ConditionBuilder.Create();
+      var builder = ConditionBuilder.Create;
       //---------------Test Result -----------------------
       Assert.IsNotNull(builder);
       Assert.IsInstanceOf<IConditionBuilder>(builder);
@@ -29,7 +29,10 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Set up test pack-------------------
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var sqlStatement = ConditionBuilder.Create().WithDatabaseProvider(databaseProviderType).WithCondition("TestTable1", "TestColumn1", EqualityOperators.Equals, "TestTable2", "TestColumn2").Build();
+      var sqlStatement = ConditionBuilder.Create
+                                         .WithDatabaseProvider(databaseProviderType)
+                                         .WithCondition("TestTable1", "TestColumn1", EqualityOperators.Equals, "TestTable2", "TestColumn2")
+                                         .Build();
       //---------------Test Result -----------------------
       StringAssert.AreEqualIgnoringCase(expectedStatement, sqlStatement);
     }
@@ -47,9 +50,9 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Set up test pack-------------------
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var sqlStatement = ConditionBuilder.Create().WithDatabaseProvider(DatabaseProviderType.SqlServer)
-                                                  .WithCondition(sourceTable, sourceColumn, equalityOperator, compareTable, compareColumn)
-                                                  .Build();
+      var sqlStatement = ConditionBuilder.Create.WithDatabaseProvider(DatabaseProviderType.SqlServer)
+                                                .WithCondition(sourceTable, sourceColumn, equalityOperator, compareTable, compareColumn)
+                                                .Build();
       //---------------Test Result -----------------------
       StringAssert.AreEqualIgnoringCase(expectedStatement, sqlStatement);
     }
@@ -67,9 +70,9 @@ namespace Thuria.Thark.StatementBuilder.Tests
       //---------------Set up test pack-------------------
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var sqlStatement = ConditionBuilder.Create().WithDatabaseProvider(DatabaseProviderType.SqlServer)
-                                                  .WithCondition(sourceTable, sourceColumn, equalityOperator, compareValue)
-                                                  .Build();
+      var sqlStatement = ConditionBuilder.Create.WithDatabaseProvider(DatabaseProviderType.SqlServer)
+                                                .WithCondition(sourceTable, sourceColumn, equalityOperator, compareValue)
+                                                .Build();
       //---------------Test Result -----------------------
       StringAssert.AreEqualIgnoringCase(expectedStatement, sqlStatement);
     }
@@ -81,7 +84,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var expectedStatement = " [SourceTable1].[SourceColumn1] = 'TestValue1' AND [SourceTable2].[SourceColumn2] = 'TestValue2' ";
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var sqlStatement = ConditionBuilder.Create()
+      var sqlStatement = ConditionBuilder.Create
                                          .WithDatabaseProvider(DatabaseProviderType.SqlServer)
                                          .WithCondition("SourceTable1", "SourceColumn1", EqualityOperators.Equals, "TestValue1")
                                          .WithAnd()
@@ -98,7 +101,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var expectedStatement = " [SourceTable1].[SourceColumn1] = 'TestValue1' OR [SourceTable2].[SourceColumn2] = 'TestValue2' ";
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var sqlStatement = ConditionBuilder.Create()
+      var sqlStatement = ConditionBuilder.Create
                                          .WithDatabaseProvider(DatabaseProviderType.SqlServer)
                                          .WithCondition("SourceTable1", "SourceColumn1", EqualityOperators.Equals, "TestValue1")
                                          .WithOr()
@@ -115,7 +118,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       var expectedStatement = " [SourceTable1].[SourceColumn1] = 'TestValue1' AND ( [SourceTable2].[SourceColumn2] = 'TestValue2' OR [SourceTable3].[SourceColumn3] = 'TestValue3' ) ";
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var sqlStatement = ConditionBuilder.Create()
+      var sqlStatement = ConditionBuilder.Create
                                          .WithDatabaseProvider(DatabaseProviderType.SqlServer)
                                          .WithCondition("SourceTable1", "SourceColumn1", EqualityOperators.Equals, "TestValue1")
                                          .WithAnd()
