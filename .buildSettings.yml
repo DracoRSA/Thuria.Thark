@@ -3,21 +3,21 @@ CONFIGURATION: Debug
 NUGETPACKAGES:
   - Core:
     Name: Thark.Core
-    Version: 0.0.4
+    Version: 0.0.5
     Location: src/Thuria.Thark.Core
     IsBeta: true
   - StatementBuilder:
     Name: Thark.StatementBuilder
-    Version: 0.0.4
+    Version: 0.0.5
     Location: src/Thuria.Thark.StatementBuilder
     IsBeta: true
   - DataAccess:
     Name: Thark.DataAccess
-    Version: 0.0.4
+    Version: 0.0.5
     Location: src/Thuria.Thark.DataAccess
     IsBeta: true
   - DataModel:
     Name: Thark.DataModel
-    Version: 0.0.4
+    Version: 0.0.5
     Location: src/Thuria.Thark.DataModel
     IsBeta: true
