@@ -13,7 +13,7 @@ NUGETPACKAGES:
     IsBeta: true
   - DataAccess:
     Name: Thark.DataAccess
-    Version: 0.0.5
+    Version: 0.0.6
     Location: src/Thuria.Thark.DataAccess
     IsBeta: true
   - DataModel:

@@ -18,13 +18,6 @@ namespace Thuria.Thark.DataAccess.Builders
     private int _commandTimeout = 30;
 
     /// <summary>
-    /// Private Constructor for Database Builder
-    /// </summary>
-    private DatabaseBuilder()
-    {
-    }
-
-    /// <summary>
     /// Create a new Database Builder object
     /// </summary>
     public static IDatabaseBuilder Create => new DatabaseBuilder();
