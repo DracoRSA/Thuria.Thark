@@ -16,15 +16,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
   {
     private string _insertTableName;
     private IColumnModel _idColumn;
-    private readonly Dictionary<IColumnModel, object> _insertColumns;
-
-    /// <summary>
-    /// Insert Statement Builder constructor
-    /// </summary>
-    protected InsertStatementBuilder()
-    {
-      _insertColumns = new Dictionary<IColumnModel, object>();
-    }
+    private readonly Dictionary<IColumnModel, object> _insertColumns = new Dictionary<IColumnModel, object>();
 
     /// <summary>
     /// Create a new instance of the Insert Statement Builder
@@ -115,6 +107,8 @@ namespace Thuria.Thark.StatementBuilder.Builders
 
       insertStatement.Append(")");
 
+      Clear();
+
       return insertStatement.ToString();
     }
 
@@ -144,5 +138,12 @@ namespace Thuria.Thark.StatementBuilder.Builders
 
       return !Errors.Any();
     }
-  }
+
+    private void Clear()
+    {
+      _insertTableName = string.Empty;
+      _idColumn        = null;
+      _insertColumns.Clear();
+    }
+}
 }

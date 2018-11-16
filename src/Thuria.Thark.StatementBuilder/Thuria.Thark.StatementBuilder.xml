@@ -44,11 +44,6 @@
             Insert Statement Builder
             </summary>
         </member>
-        <member name="M:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.#ctor">
-            <summary>
-            Insert Statement Builder constructor
-            </summary>
-        </member>
         <member name="P:Thuria.Thark.StatementBuilder.Builders.InsertStatementBuilder.Create">
             <summary>
             Create a new instance of the Insert Statement Builder
@@ -78,11 +73,6 @@
         <member name="T:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder">
             <summary>
             Select Statement Builder
-            </summary>
-        </member>
-        <member name="M:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.#ctor">
-            <summary>
-            Select Statement Builder constructor
             </summary>
         </member>
         <member name="P:Thuria.Thark.StatementBuilder.Builders.SelectStatementBuilder.Create">
@@ -165,11 +155,6 @@
         <member name="T:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder">
             <summary>
             Update Statement Builder
-            </summary>
-        </member>
-        <member name="M:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.#ctor">
-            <summary>
-            Update Statement Builder constructpr
             </summary>
         </member>
         <member name="P:Thuria.Thark.StatementBuilder.Builders.UpdateStatementBuilder.Create">

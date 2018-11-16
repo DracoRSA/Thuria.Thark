@@ -21,13 +21,6 @@ namespace Thuria.Thark.StatementBuilder.Builders
     private readonly List<string> _rawWhereConditions       = new List<string>();
 
     /// <summary>
-    /// Select Statement Builder constructor
-    /// </summary>
-    protected SelectStatementBuilder()
-    {
-    }
-
-    /// <summary>
     /// Create a new instance of the SelectStatementBuilder
     /// </summary>
     /// <returns>A new instance of the SelectStatementBuilder</returns>
@@ -115,6 +108,8 @@ namespace Thuria.Thark.StatementBuilder.Builders
       selectStatement.Append(" FROM ");
       selectStatement.Append(AddTableToSelectStatement());
       selectStatement.Append(AddWhereConditionsToSelectStatement());
+
+      Clear();
 
       return selectStatement.ToString();
     }
@@ -208,5 +203,13 @@ namespace Thuria.Thark.StatementBuilder.Builders
 
       return returnValue.ToString();
     }
-  }
+
+    private void Clear()
+    {
+      _selectTables.Clear();
+      _selectColumns.Clear();
+      _whereConditions.Clear();
+      _rawWhereConditions.Clear();
+    }
+}
 }

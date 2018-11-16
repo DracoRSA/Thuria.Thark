@@ -16,19 +16,9 @@ namespace Thuria.Thark.StatementBuilder.Builders
   public class UpdateStatementBuilder : StatementBuilderBase, IUpdateStatementBuilder
   {
     private string _updateTableName;
-    private readonly Dictionary<IColumnModel, object> _updateColumns;
-    private readonly List<IConditionModel> _whereConditions;
-    private readonly List<string> _rawWhereConditions;
-
-    /// <summary>
-    /// Update Statement Builder constructpr
-    /// </summary>
-    protected UpdateStatementBuilder()
-    {
-      _updateColumns      = new Dictionary<IColumnModel, object>();
-      _whereConditions    = new List<IConditionModel>();
-      _rawWhereConditions = new List<string>();
-    }
+    private readonly Dictionary<IColumnModel, object> _updateColumns = new Dictionary<IColumnModel, object>();
+    private readonly List<IConditionModel> _whereConditions          = new List<IConditionModel>();
+    private readonly List<string> _rawWhereConditions                = new List<string>();
 
     /// <summary>
     /// Create a new instance of the UpdateStatementBuilder
@@ -113,6 +103,8 @@ namespace Thuria.Thark.StatementBuilder.Builders
 
       updateStatement.Append(AddWhereConditionsToSelectStatement());
 
+      Clear();
+
       return updateStatement.ToString();
     }
 
@@ -180,6 +172,14 @@ namespace Thuria.Thark.StatementBuilder.Builders
       }
 
       return returnValue.ToString();
+    }
+
+    private void Clear()
+    {
+      _updateTableName = string.Empty;
+      _updateColumns.Clear();
+      _whereConditions.Clear();
+      _rawWhereConditions.Clear();
     }
   }
 }

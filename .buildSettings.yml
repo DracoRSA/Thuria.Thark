@@ -8,7 +8,7 @@ NUGETPACKAGES:
     IsBeta: true
   - StatementBuilder:
     Name: Thark.StatementBuilder
-    Version: 0.0.5
+    Version: 0.0.6
     Location: src/Thuria.Thark.StatementBuilder
     IsBeta: true
   - DataAccess:

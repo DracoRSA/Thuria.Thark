@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 using Thuria.Thark.Core.Statement;
 using Thuria.Thark.Core.Statement.Models;
@@ -17,15 +18,8 @@ namespace Thuria.Thark.StatementBuilder.Builders
   public class ConditionBuilder : IConditionBuilder
   {
     private int _conditionNumber;
-    private IDatabaseProvider _databaseProvider;
-    private readonly IDictionary<int, object> _buildConditions;
-
-    private ConditionBuilder()
-    {
-      _conditionNumber  = 0;
-      _databaseProvider = new SqlServerDatabaseProvider();
-      _buildConditions  = new Dictionary<int, object>();
-    }
+    private IDatabaseProvider _databaseProvider                = new SqlServerDatabaseProvider();
+    private readonly IDictionary<int, object> _buildConditions = new ConcurrentDictionary<int, object>();
 
     /// <summary>
     /// Create a Condition Builder
@@ -64,8 +58,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
     }
 
     /// <inheritdoc />
-    public IConditionBuilder WithCondition(string leftConditionTable, string leftConditionColumn, EqualityOperators equalityOperator,
-                                           string rightConditionTable, string rightConditionColumn)
+    public IConditionBuilder WithCondition(string leftConditionTable, string leftConditionColumn, EqualityOperators equalityOperator, string rightConditionTable, string rightConditionColumn)
     {
       var columnConditionModel = new ColumnConditionModel(leftConditionTable, leftConditionColumn, equalityOperator, rightConditionTable, rightConditionColumn);
       _buildConditions.Add(_conditionNumber++, columnConditionModel);
@@ -110,7 +103,7 @@ namespace Thuria.Thark.StatementBuilder.Builders
       {
         if (currentCondition.Value is IConditionModel)
         {
-          var condition              = (IConditionModel)currentCondition.Value;
+          var condition = (IConditionModel)currentCondition.Value;
           condition.DatabaseProvider = _databaseProvider;
 
           returnCondition.Append($" {condition} ");
@@ -127,7 +120,17 @@ namespace Thuria.Thark.StatementBuilder.Builders
         }
       }
 
+      Clear();
+
       return returnCondition.ToString();
+    }
+
+    private void Clear()
+    {
+      _conditionNumber  = 0;
+      _databaseProvider = new SqlServerDatabaseProvider();
+
+      _buildConditions.Clear();
     }
   }
 }
