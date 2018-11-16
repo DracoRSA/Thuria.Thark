@@ -7,11 +7,6 @@
         <member name="T:Thuria.Thark.DataAccess.Builders.DatabaseBuilder">
             <inheritdoc />
         </member>
-        <member name="M:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.#ctor">
-            <summary>
-            Private Constructor for Database Builder
-            </summary>
-        </member>
         <member name="P:Thuria.Thark.DataAccess.Builders.DatabaseBuilder.Create">
             <summary>
             Create a new Database Builder object

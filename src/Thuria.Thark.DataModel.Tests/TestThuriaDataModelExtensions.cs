@@ -134,11 +134,11 @@ namespace Thuria.Thark.DataModel.Tests
       primaryKey.Should().BeNull();
     }
 
-    [TestCase(TharkAction.Retrieve, 0)]
+    [TestCase(TharkAction.Retrieve, 5)]
     [TestCase(TharkAction.Insert, 2)]
     [TestCase(TharkAction.Update, 3)]
-    [TestCase(TharkAction.Delete, 0)]
-    public void GetThuriaDataModelConditions_GivenDataModelWithConditions_AndInsertAction_ShouldReturnAllExpectedConditions(TharkAction tharkAction, int noOfExpectedConditions)
+    [TestCase(TharkAction.Delete, 5)]
+    public void GetThuriaDataModelConditions_GivenDataModelWithConditions_ShouldReturnAllExpectedConditions(TharkAction tharkAction, int noOfExpectedConditions)
     {
       //---------------Set up test pack-------------------
       var dataModel = new ThuriaTestDataModel

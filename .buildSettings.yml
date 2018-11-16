@@ -18,6 +18,6 @@ NUGETPACKAGES:
     IsBeta: true
   - DataModel:
     Name: Thark.DataModel
-    Version: 0.0.5
+    Version: 0.0.6
     Location: src/Thuria.Thark.DataModel
     IsBeta: true

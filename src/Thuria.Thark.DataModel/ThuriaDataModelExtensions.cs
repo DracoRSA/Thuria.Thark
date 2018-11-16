@@ -66,8 +66,6 @@ namespace Thuria.Thark.DataModel
               where thuriaIgnoreAttribute == null
               let thuriaRelationshipAttribute = currentProperty.GetCustomAttribute<ThuriaRelationshipAttribute>()
               where thuriaRelationshipAttribute == null
-              // let thuriaConditionAttribute = currentProperty.GetCustomAttributes<ThuriaConditionColumnAttribute>().FirstOrDefault(attribute => attribute.TharkAction == tharkAction)
-              // where thuriaConditionAttribute == null
               let thuriaColumnAttribute = currentProperty.GetCustomAttribute<ThuriaColumnAttribute>()
               select thuriaColumnAttribute?.SetPropertyName(currentProperty.Name) ?? new ThuriaColumnAttribute(currentProperty.Name).SetPropertyName(currentProperty.Name))
               .Where(thuriaColumnAttribute =>
@@ -126,14 +124,19 @@ namespace Thuria.Thark.DataModel
       foreach (var currentProperty in allProperties)
       {
         if (currentProperty.GetCustomAttribute<ThuriaIgnoreAttribute>() != null) { continue; }
-    
+
+        var propertyValue = currentProperty.GetValue(dataModel);
         var conditionColumnAttribute = currentProperty.GetCustomAttributes<ThuriaConditionColumnAttribute>()
                                                       .FirstOrDefault(attribute => attribute.TharkAction == tharkAction);
-        if (conditionColumnAttribute == null) { continue; }
-    
-        var propertyValue     = dataModel.GetPropertyValue(currentProperty.Name);
+        if (propertyValue == null) { continue; }
+        if (tharkAction != TharkAction.Retrieve && tharkAction != TharkAction.Delete && conditionColumnAttribute == null)
+        {
+          continue;
+        }
+
+        var isRequired        = conditionColumnAttribute == null ? false : conditionColumnAttribute.IsRequired;
         var columnName        = dataModel.GetThuriaDataModelColumnName(currentProperty.Name);
-        var conditionMetadata = new ThuriaDataModelConditionMetadata(columnName.ColumnName, conditionColumnAttribute.IsRequired, propertyValue);
+        var conditionMetadata = new ThuriaDataModelConditionMetadata(columnName.ColumnName, isRequired, propertyValue);
     
         allConditions.Add(conditionMetadata);
       }
