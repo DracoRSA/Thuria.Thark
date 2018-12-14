@@ -60,7 +60,7 @@ namespace Thuria.Thark.DataModel
     {
       var dataModelType = dataModel.GetType();
       var allProperties = dataModelType.GetProperties();
-    
+
       return (from currentProperty in allProperties
               let thuriaIgnoreAttribute = currentProperty.GetCustomAttribute<ThuriaIgnoreAttribute>()
               where thuriaIgnoreAttribute == null
@@ -125,7 +125,7 @@ namespace Thuria.Thark.DataModel
       {
         if (currentProperty.GetCustomAttribute<ThuriaIgnoreAttribute>() != null) { continue; }
 
-        var propertyValue = currentProperty.GetValue(dataModel);
+        var propertyValue            = currentProperty.GetValue(dataModel);
         var conditionColumnAttribute = currentProperty.GetCustomAttributes<ThuriaConditionColumnAttribute>()
                                                       .FirstOrDefault(attribute => attribute.TharkAction == tharkAction);
         if (propertyValue == null) { continue; }
