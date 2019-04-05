@@ -95,6 +95,15 @@ namespace Thuria.Thark.StatementBuilder.Builders
     }
 
     /// <inheritdoc />
+    public void Clear()
+    {
+      _conditionNumber = 0;
+      _databaseProvider = new SqlServerDatabaseProvider();
+
+      _buildConditions.Clear();
+    }
+
+    /// <inheritdoc />
     public string Build()
     {
       var returnCondition = new StringBuilder();
@@ -123,14 +132,6 @@ namespace Thuria.Thark.StatementBuilder.Builders
       Clear();
 
       return returnCondition.ToString();
-    }
-
-    private void Clear()
-    {
-      _conditionNumber  = 0;
-      _databaseProvider = new SqlServerDatabaseProvider();
-
-      _buildConditions.Clear();
     }
   }
 }

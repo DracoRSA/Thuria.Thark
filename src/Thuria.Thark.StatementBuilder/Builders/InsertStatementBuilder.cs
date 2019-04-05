@@ -60,6 +60,15 @@ namespace Thuria.Thark.StatementBuilder.Builders
       return this;
     }
 
+
+    /// <inheritdoc />
+    public override void Clear()
+    {
+      _insertTableName = string.Empty;
+      _idColumn = null;
+      _insertColumns.Clear();
+    }
+
     /// <inheritdoc />
     public override string Build()
     {
@@ -138,12 +147,5 @@ namespace Thuria.Thark.StatementBuilder.Builders
 
       return !Errors.Any();
     }
-
-    private void Clear()
-    {
-      _insertTableName = string.Empty;
-      _idColumn        = null;
-      _insertColumns.Clear();
-    }
-}
+  }
 }

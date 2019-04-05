@@ -28,6 +28,9 @@ namespace Thuria.Thark.StatementBuilder.Builders
     }
 
     /// <inheritdoc />
+    public abstract void Clear();
+
+    /// <inheritdoc />
     public abstract string Build();
 
     /// <inheritdoc />

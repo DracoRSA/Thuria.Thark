@@ -77,6 +77,15 @@ namespace Thuria.Thark.StatementBuilder.Builders
     }
 
     /// <inheritdoc />
+    public override void Clear()
+    {
+      _updateTableName = string.Empty;
+      _updateColumns.Clear();
+      _whereConditions.Clear();
+      _rawWhereConditions.Clear();
+    }
+
+    /// <inheritdoc />
     public override string Build()
     {
       if (!ValidateStatementRequirement())
@@ -172,14 +181,6 @@ namespace Thuria.Thark.StatementBuilder.Builders
       }
 
       return returnValue.ToString();
-    }
-
-    private void Clear()
-    {
-      _updateTableName = string.Empty;
-      _updateColumns.Clear();
-      _whereConditions.Clear();
-      _rawWhereConditions.Clear();
     }
   }
 }

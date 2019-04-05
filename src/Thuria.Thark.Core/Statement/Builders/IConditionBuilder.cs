@@ -32,6 +32,7 @@
     /// <param name="rightConditionColumn">Right Condition Column Name</param>
     /// <returns>An instance of the Condition Builder</returns>
     IConditionBuilder WithCondition(string leftConditionTable, string leftConditionColumn, EqualityOperators equalityOperator, string rightConditionTable, string rightConditionColumn);
+
     /// <summary>
     /// Specify a Start Section to use
     /// </summary>
@@ -55,6 +56,11 @@
     /// </summary>
     /// <returns>An instance of the Condition Builder</returns>
     IConditionBuilder WithOr();
+
+    /// <summary>
+    /// Clear the Builder in preparation for building a new Condition
+    /// </summary>
+    void Clear();
 
     /// <summary>
     /// Build the required Condition

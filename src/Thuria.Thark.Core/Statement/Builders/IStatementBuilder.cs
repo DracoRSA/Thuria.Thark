@@ -32,6 +32,11 @@ namespace Thuria.Thark.Core.Statement.Builders
     void DatabaseProviderChanged();
 
     /// <summary>
+    /// Clear the Builder in preparation for building a new Statement
+    /// </summary>
+    void Clear();
+
+    /// <summary>
     /// Build the Statement
     /// </summary>
     /// <returns>A string representing the Statement</returns>
