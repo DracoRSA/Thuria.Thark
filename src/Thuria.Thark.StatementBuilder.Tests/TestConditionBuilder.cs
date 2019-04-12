@@ -58,6 +58,8 @@ namespace Thuria.Thark.StatementBuilder.Tests
     }
 
     [TestCase("SourceTable", "SourceColumn", EqualityOperators.Equals, "TestValue", " [SourceTable].[SourceColumn] = 'TestValue' ")]
+    [TestCase("SourceTable", "SourceColumn", EqualityOperators.Equals, true, " [SourceTable].[SourceColumn] = 1 ")]
+    [TestCase("SourceTable", "SourceColumn", EqualityOperators.Equals, false, " [SourceTable].[SourceColumn] = 0 ")]
     [TestCase("SourceTable", "SourceColumn", EqualityOperators.Like, "TestValue", " [SourceTable].[SourceColumn] LIKE 'TestValue' ")]
     [TestCase("SourceTable", "SourceColumn", EqualityOperators.GreaterThan, "TestValue", " [SourceTable].[SourceColumn] > 'TestValue' ")]
     [TestCase("SourceTable", "SourceColumn", EqualityOperators.GreaterThanOrEqualTo, "TestValue", " [SourceTable].[SourceColumn] >= 'TestValue' ")]

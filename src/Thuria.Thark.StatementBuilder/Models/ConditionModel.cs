@@ -42,7 +42,7 @@ namespace Thuria.Thark.StatementBuilder.Models
           DatabaseProvider = DatabaseProvider
         };
 
-      return $"{conditionColumn} {DataMap.EqualityOperatorMap[_equalityOperator]} {Quote}{_conditionValue ?? "NULL"}{Quote}";
+      return $"{conditionColumn} {DataMap.EqualityOperatorMap[_equalityOperator]} {Quote}{_conditionValue.StatementValue() ?? "NULL"}{Quote}";
     }
 
     /// <inheritdoc />
