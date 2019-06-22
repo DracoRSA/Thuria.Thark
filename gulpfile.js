@@ -322,6 +322,12 @@ gulp.task('build-all', gulp.series('load-settings', 'clean', 'build', (done) => 
     done();
 }));
 
+// Test-Only
+gulp.task('test-only', gulp.series('load-settings', 'test', (done) => {
+    console.log("Done ...")
+    done();
+}));
+
 // Publish-All
 gulp.task('publish-all', gulp.series('load-settings', 'test', 'publish-win10', (done) => {
     console.log("Done ...")
