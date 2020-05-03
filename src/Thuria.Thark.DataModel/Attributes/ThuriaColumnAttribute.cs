@@ -22,6 +22,7 @@ namespace Thuria.Thark.DataModel.Attributes
 
       ColumnName     = columnName;
       Alias          = columnAlias;
+      IsPrimaryKey   = isPrimaryKey;
       IsInsertColumn = isInsertColumn;
       IsUpdateColumn = isUpdateColumn;
     }

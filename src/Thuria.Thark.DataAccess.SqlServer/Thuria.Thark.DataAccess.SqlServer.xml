@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Thuria.Thark.DataAccess.SqlServer</name>
+    </assembly>
+    <members>
+        <member name="T:Thuria.Thark.DataAccess.SqlServer.SqlServerDbConnectionProvider">
+            <summary>
+            SQL Server Database Connection Provider
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataAccess.SqlServer.SqlServerDbConnectionProvider.ProviderType">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.SqlServer.SqlServerDbConnectionProvider.GetConnection(System.String)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

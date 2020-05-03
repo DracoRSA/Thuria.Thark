@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
 
-using Thuria.Thark.Core.Statement;
 using Thuria.Thark.Core.DataAccess;
 using Thuria.Thark.DataAccess.Context;
 using Thuria.Thark.DataAccess.Providers;
@@ -10,41 +7,43 @@ using Thuria.Thark.DataAccess.Providers;
 namespace Thuria.Thark.DataAccess.Builders
 {
   /// <inheritdoc />
-  public class DatabaseBuilder : IDatabaseBuilder
+  public class DatabaseContextBuilder : IDatabaseContextBuilder
   {
     private string _connectionString;
-    private DatabaseProviderType _databaseProviderType;
+    private IDatabaseConnectionProvider _databaseConnectionProvider;
     private bool _isReadonly;
     private int _commandTimeout = 30;
 
     /// <summary>
     /// Create a new Database Builder object
     /// </summary>
-    public static IDatabaseBuilder Create => new DatabaseBuilder();
+    public static IDatabaseContextBuilder Create => new DatabaseContextBuilder();
 
     /// <inheritdoc />
-    public IDatabaseBuilder WithDatabaseProviderType(DatabaseProviderType databaseProviderType)
+    public IDatabaseContextBuilder WithDatabaseConnectionProvider(IDatabaseConnectionProvider databaseConnectionProvider)
     {
-      _databaseProviderType = databaseProviderType;
+      if (databaseConnectionProvider == null) { throw new ArgumentNullException(nameof(databaseConnectionProvider)); }
+
+      _databaseConnectionProvider = databaseConnectionProvider;
       return this;
     }
 
     /// <inheritdoc />
-    public IDatabaseBuilder WithCommandTimeout(int newCommandTimeout)
+    public IDatabaseContextBuilder WithCommandTimeout(int newCommandTimeout)
     {
       _commandTimeout = newCommandTimeout;
       return this;
     }
 
     /// <inheritdoc />
-    public IDatabaseBuilder WithConnectionString(string connectionString)
+    public IDatabaseContextBuilder WithConnectionString(string connectionString)
     {
       _connectionString = connectionString;
       return this;
     }
 
     /// <inheritdoc />
-    public IDatabaseBuilder AsReadonly()
+    public IDatabaseContextBuilder AsReadonly()
     {
       _isReadonly = true;
       return this;
@@ -54,7 +53,7 @@ namespace Thuria.Thark.DataAccess.Builders
     public IDatabaseContext Build()
     {
       ValidateBuilder();
-      var databaseConnection = CreateDatabaseConnection();
+      var databaseConnection = _databaseConnectionProvider.GetConnection(_connectionString);
 
       return _isReadonly
                   ? new ReadonlyDatabaseContext(databaseConnection, new NullDatabaseTransactionScopeProvider()) { CommandTimeout = _commandTimeout } 
@@ -65,7 +64,7 @@ namespace Thuria.Thark.DataAccess.Builders
     public IReadonlyDatabaseContext BuildReadonly()
     {
       ValidateBuilder();
-      var databaseConnection = CreateDatabaseConnection();
+      var databaseConnection = _databaseConnectionProvider.GetConnection(_connectionString);
 
       return new ReadonlyDatabaseContext(databaseConnection, new NullDatabaseTransactionScopeProvider());
     }
@@ -74,7 +73,7 @@ namespace Thuria.Thark.DataAccess.Builders
     public IReadWriteDatabaseContext BuildReadWrite()
     {
       ValidateBuilder();
-      var databaseConnection = CreateDatabaseConnection();
+      var databaseConnection = _databaseConnectionProvider.GetConnection(_connectionString);
 
       return new ReadWriteDatabaseContext(databaseConnection, new NullDatabaseTransactionScopeProvider());
     }
@@ -83,19 +82,12 @@ namespace Thuria.Thark.DataAccess.Builders
     {
       if (string.IsNullOrWhiteSpace(_connectionString))
       {
-        throw new Exception("Database Connection String is empty");
+        throw new ArgumentException("Database Connection string must be specified", nameof(_connectionString));
       }
-    }
 
-    private IDbConnection CreateDatabaseConnection()
-    {
-      switch (_databaseProviderType)
+      if (_databaseConnectionProvider == null)
       {
-        case DatabaseProviderType.SqlServer:
-          return new SqlConnection(_connectionString);
-
-        default:
-          throw new Exception($"Database Provider [{_databaseProviderType}] is not currently supported");
+        throw new ArgumentException("Connection Provider must be specified", nameof(_databaseConnectionProvider));
       }
     }
   }

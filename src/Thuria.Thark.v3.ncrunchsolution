@@ -1,6 +1,19 @@
 ﻿<SolutionConfiguration>
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <MetricsExclusionList>
+      <Value>Thuria.Thark.Core\Thuria.Thark.Core.csproj:netstandard2.0</Value>
+      <Value>Thuria.Thark.DataAccess\Thuria.Thark.DataAccess.csproj:netstandard2.0</Value>
+      <Value>Thuria.Thark.DataAccess.Sqlite\Thuria.Thark.DataAccess.Sqlite.csproj:netstandard2.0</Value>
+      <Value>Thuria.Thark.DataAccess.Sqlite.Tests\Thuria.Thark.DataAccess.Sqlite.Tests.csproj</Value>
+      <Value>Thuria.Thark.DataAccess.SqlServer\Thuria.Thark.DataAccess.SqlServer.csproj:netstandard2.0</Value>
+      <Value>Thuria.Thark.DataAccess.SqlServer.Tests\Thuria.Thark.DataAccess.SqlServer.Tests.csproj</Value>
+      <Value>Thuria.Thark.DataAccess.Tests\Thuria.Thark.DataAccess.Tests.csproj</Value>
+      <Value>Thuria.Thark.DataModel\Thuria.Thark.DataModel.csproj:netstandard2.0</Value>
+      <Value>Thuria.Thark.DataModel.Tests\Thuria.Thark.DataModel.Tests.csproj</Value>
+      <Value>Thuria.Thark.StatementBuilder\Thuria.Thark.StatementBuilder.csproj:netstandard2.0</Value>
+      <Value>Thuria.Thark.StatementBuilder.Tests\Thuria.Thark.StatementBuilder.Tests.csproj</Value>
+    </MetricsExclusionList>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>
 </SolutionConfiguration>

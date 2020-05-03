@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2041
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thuria.Thark.StatementBuilder", "Thuria.Thark.StatementBuilder\Thuria.Thark.StatementBuilder.csproj", "{C5453228-AF3C-46B3-8817-1B865E4EDD61}"
 EndProject
@@ -20,8 +20,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F70F455-2DB1-415B-85E6-FE8C8E458B3C}"
 	ProjectSection(SolutionItems) = preProject
 		..\.buildSettings.yml = ..\.buildSettings.yml
+		..\gulpfile.js = ..\gulpfile.js
+		..\package.json = ..\package.json
 		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thuria.Thark.DataAccess.SqlServer", "Thuria.Thark.DataAccess.SqlServer\Thuria.Thark.DataAccess.SqlServer.csproj", "{025C2A03-C813-4741-AF12-6859C27D9542}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thuria.Thark.DataAccess.SqlServer.Tests", "Thuria.Thark.DataAccess.SqlServer.Tests\Thuria.Thark.DataAccess.SqlServer.Tests.csproj", "{6A8171A8-3B17-4FA5-9CD0-0B19B12473C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thuria.Thark.DataAccess.Sqlite", "Thuria.Thark.DataAccess.Sqlite\Thuria.Thark.DataAccess.Sqlite.csproj", "{999A6141-DCE5-44BB-90C6-5FAFDFFF1DA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thuria.Thark.DataAccess.Sqlite.Tests", "Thuria.Thark.DataAccess.Sqlite.Tests\Thuria.Thark.DataAccess.Sqlite.Tests.csproj", "{BC33D57E-615F-42AB-8FC7-F49A1DC29AD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +67,22 @@ Global
 		{8683088C-99D6-4BCC-84C2-495C80C18AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8683088C-99D6-4BCC-84C2-495C80C18AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8683088C-99D6-4BCC-84C2-495C80C18AD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{025C2A03-C813-4741-AF12-6859C27D9542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{025C2A03-C813-4741-AF12-6859C27D9542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{025C2A03-C813-4741-AF12-6859C27D9542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{025C2A03-C813-4741-AF12-6859C27D9542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A8171A8-3B17-4FA5-9CD0-0B19B12473C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A8171A8-3B17-4FA5-9CD0-0B19B12473C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A8171A8-3B17-4FA5-9CD0-0B19B12473C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A8171A8-3B17-4FA5-9CD0-0B19B12473C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{999A6141-DCE5-44BB-90C6-5FAFDFFF1DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{999A6141-DCE5-44BB-90C6-5FAFDFFF1DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{999A6141-DCE5-44BB-90C6-5FAFDFFF1DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{999A6141-DCE5-44BB-90C6-5FAFDFFF1DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC33D57E-615F-42AB-8FC7-F49A1DC29AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC33D57E-615F-42AB-8FC7-F49A1DC29AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC33D57E-615F-42AB-8FC7-F49A1DC29AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC33D57E-615F-42AB-8FC7-F49A1DC29AD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

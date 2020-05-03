@@ -11,6 +11,11 @@
     SqlServer,
 
     /// <summary>
+    /// Sql Lite
+    /// </summary>
+    Sqlite,
+
+    /// <summary>
     /// Postgres
     /// </summary>
     Postgres,

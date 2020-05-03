@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
@@ -10,16 +10,20 @@
     <RepositoryUrl>https://github.com/DracoRSA/Thuria.Thark</RepositoryUrl>
     <PackageTags>Thuria DataAccess ORM</PackageTags>
     <Version>0.1.0-beta</Version>
-    <Description>The Thark Data Access package contains a set of builders and the database context required to interact with a database. Various databases are supported.</Description>
+    <Description>Sql Server support for the Thuria Thark framework</Description>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Draco\Thuria.Thark\src\Thuria.Thark.DataAccess\Thuria.Thark.DataAccess.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <DocumentationFile>D:\projects\Thuria\Thark\src\Thuria.Thark.DataAccess.SqlServer\Thuria.Thark.DataAccess.SqlServer.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <DocumentationFile>D:\projects\Thuria\Thark\src\Thuria.Thark.DataAccess.SqlServer\Thuria.Thark.DataAccess.SqlServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>

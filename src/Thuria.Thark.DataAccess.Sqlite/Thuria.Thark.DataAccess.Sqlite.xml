@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Thuria.Thark.DataAccess.Sqlite</name>
+    </assembly>
+    <members>
+        <member name="T:Thuria.Thark.DataAccess.Sqlite.SqliteDbConnectionProvider">
+            <summary>
+            Sql Lite Database Connection Provider
+            </summary>
+        </member>
+        <member name="P:Thuria.Thark.DataAccess.Sqlite.SqliteDbConnectionProvider.ProviderType">
+            <inheritdoc />
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.Sqlite.SqliteDbConnectionProvider.GetConnection(System.String)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

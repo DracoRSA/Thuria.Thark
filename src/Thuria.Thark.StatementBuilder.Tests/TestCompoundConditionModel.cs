@@ -1,4 +1,4 @@
-﻿using Moq;
+﻿using NSubstitute;
 using NUnit.Framework;
 
 using Thuria.Calot.TestUtilities;
@@ -16,11 +16,11 @@ namespace Thuria.Thark.StatementBuilder.Tests
     public void Constructor()
     {
       //---------------Set up test pack-------------------
-      var leftCondition = new Mock<IConditionModel>();
-      var rightCondition = new Mock<IConditionModel>();
+      var leftCondition  = Substitute.For<IConditionModel>();
+      var rightCondition = Substitute.For<IConditionModel>();
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var model = new CompoundConditionModel(leftCondition.Object, BooleanOperator.And, rightCondition.Object);
+      var model = new CompoundConditionModel(leftCondition, BooleanOperator.And, rightCondition);
       //---------------Test Result -----------------------
       Assert.IsNotNull(model);
     }

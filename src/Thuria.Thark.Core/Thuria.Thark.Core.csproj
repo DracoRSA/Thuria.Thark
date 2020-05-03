@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
     <Authors>Johan Dercksen</Authors>
     <Company>Draco</Company>
     <Product>Thuria</Product>
@@ -9,7 +9,7 @@
     <PackageProjectUrl>https://github.com/DracoRSA/Thuria.Thark</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DracoRSA/Thuria.Thark</RepositoryUrl>
     <PackageTags>Thuria DataAccess ORM</PackageTags>
-    <Version>0.0.6-beta</Version>
+    <Version>0.1.0-beta</Version>
     <Description>Core interfaces and enumerations for the Thuria Thark framework</Description>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
