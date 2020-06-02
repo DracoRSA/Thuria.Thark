@@ -4,7 +4,7 @@ using System.Data;
 using Microsoft.Data.Sqlite;
 
 using Thuria.Thark.Core.Statement;
-using Thuria.Thark.Core.DataAccess;
+using Thuria.Thark.Core.Providers;
 
 namespace Thuria.Thark.DataAccess.Sqlite
 {

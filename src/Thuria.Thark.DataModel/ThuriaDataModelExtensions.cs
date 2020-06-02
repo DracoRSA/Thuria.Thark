@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Collections.Generic;
 
 using Thuria.Zitidar.Extensions;
+using Thuria.Thark.Core.DataAccess;
 using Thuria.Thark.DataModel.Models;
 using Thuria.Thark.DataModel.Attributes;
 
@@ -54,9 +55,9 @@ namespace Thuria.Thark.DataModel
     /// Retrieve the Given Data Models Columns based on the Action to be performed
     /// </summary>
     /// <param name="dataModel">Data Model</param>
-    /// <param name="tharkAction">Thark Action</param>
+    /// <param name="contextAction">Context Action</param>
     /// <returns>A list of Column Attributes for the specified Thark Action</returns>
-    public static IEnumerable<ThuriaColumnAttribute> GetThuriaDataModelColumns(this object dataModel, TharkAction tharkAction)
+    public static IEnumerable<ThuriaColumnAttribute> GetThuriaDataModelColumns(this object dataModel, DbContextAction contextAction)
     {
       var dataModelType = dataModel.GetType();
       var allProperties = dataModelType.GetProperties();
@@ -70,11 +71,11 @@ namespace Thuria.Thark.DataModel
               select thuriaColumnAttribute?.SetPropertyName(currentProperty.Name) ?? new ThuriaColumnAttribute(currentProperty.Name).SetPropertyName(currentProperty.Name))
               .Where(thuriaColumnAttribute =>
                 {
-                  switch (tharkAction)
+                  switch (contextAction)
                   {
-                    case TharkAction.Insert:
+                    case DbContextAction.Create:
                       return thuriaColumnAttribute.IsInsertColumn;
-                    case TharkAction.Update:
+                    case DbContextAction.Update:
                       return thuriaColumnAttribute.IsUpdateColumn;
                     default:
                       return true;
@@ -113,9 +114,9 @@ namespace Thuria.Thark.DataModel
     /// Retrieve the Conditions for a given Data Model for a specific Thark Action
     /// </summary>
     /// <param name="dataModel">Data Model</param>
-    /// <param name="tharkAction">Thark Action</param>
+    /// <param name="contextAction">Context Action</param>
     /// <returns></returns>
-    public static IEnumerable<ThuriaDataModelConditionMetadata> GetThuriaDataModelConditions(this object dataModel, TharkAction tharkAction)
+    public static IEnumerable<ThuriaDataModelConditionMetadata> GetThuriaDataModelConditions(this object dataModel, DbContextAction contextAction)
     {
       var allConditions = new List<ThuriaDataModelConditionMetadata>();
       var dataModelType = dataModel.GetType();
@@ -127,9 +128,9 @@ namespace Thuria.Thark.DataModel
 
         var propertyValue            = currentProperty.GetValue(dataModel);
         var conditionColumnAttribute = currentProperty.GetCustomAttributes<ThuriaConditionColumnAttribute>()
-                                                      .FirstOrDefault(attribute => attribute.TharkAction == tharkAction);
+                                                      .FirstOrDefault(attribute => attribute.ContextAction == contextAction);
         if (propertyValue == null) { continue; }
-        if (tharkAction != TharkAction.Retrieve && tharkAction != TharkAction.Delete && conditionColumnAttribute == null)
+        if (contextAction != DbContextAction.Retrieve && contextAction != DbContextAction.Delete && conditionColumnAttribute == null)
         {
           continue;
         }

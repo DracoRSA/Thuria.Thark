@@ -26,7 +26,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       exception.Message.Should().Contain("At least one table name must be provided");
     }
 
-    [TestCaseSource(typeof(BuilderTestData), "SimpleSelectTestCases")]
+    [TestCaseSource(typeof(BuilderTestData), nameof(BuilderTestData.SimpleSelectTestCases))]
     public void Build_GivenTableButNoColumns_ShouldReturnExpectedStatement(DatabaseProviderType providerType, string tableName, string expectedStatement)
     {
       //---------------Set up test pack-------------------
@@ -37,7 +37,7 @@ namespace Thuria.Thark.StatementBuilder.Tests
       Assert.AreEqual(expectedStatement, selectStatement);
     }
 
-    [TestCaseSource(typeof(BuilderTestData), "SelectTestCasesWithColumns")]
+    [TestCaseSource(typeof(BuilderTestData), nameof(BuilderTestData.SelectTestCasesWithColumns))]
     public void Build_GivenTableAndColumns_ShouldReturnExpectedStatement(DatabaseProviderType providerType, string tableName, 
                                                                          string[][] tableColumns, object[][] whereConditions, string expectedStatement)
     {

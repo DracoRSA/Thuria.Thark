@@ -1,4 +1,6 @@
-﻿namespace Thuria.Thark.Core.DataAccess
+﻿using Thuria.Thark.Core.Providers;
+
+namespace Thuria.Thark.Core.DataAccess
 {
   /// <summary>
   /// Database Builder
@@ -6,11 +8,39 @@
   public interface IDatabaseContextBuilder
   {
     /// <summary>
+    /// Specify the Connection String Provider to use
+    /// </summary>
+    /// <param name="connectionStringProvider"></param>
+    /// <returns></returns>
+    IDatabaseContextBuilder WithConnectionStringProvider(IConnectionStringProvider connectionStringProvider);
+
+    /// <summary>
     /// Specify the Database Provider to use
     /// </summary>
     /// <param name="databaseConnectionProvider">Database Connection Provider</param>
     /// <returns>An instance of the Database Builder</returns>
     IDatabaseContextBuilder WithDatabaseConnectionProvider(IDatabaseConnectionProvider databaseConnectionProvider);
+
+    /// <summary>
+    /// Specify the Database Transaction Provider to use
+    /// </summary>
+    /// <param name="databaseTransactionProvider">Database Transaction Provider</param>
+    /// <returns>An instance of the Database Builder</returns>
+    IDatabaseContextBuilder WithDatabaseTransactionProvider(IDatabaseTransactionProvider databaseTransactionProvider);
+
+    /// <summary>
+    /// Specify the Statement Build Provider to use
+    /// </summary>
+    /// <param name="statementBuildProvider">Statement Build Provider</param>
+    /// <returns>An instance of the Database Builder</returns>
+    IDatabaseContextBuilder WithStatementBuildProvider(IStatementBuildProvider statementBuildProvider);
+
+    /// <summary>
+    /// Specify the Data Model Populate Provider to use
+    /// </summary>
+    /// <param name="dataModelPopulateProvider">Data Model Populate Provider</param>
+    /// <returns>An instance of the Database Builder</returns>
+    IDatabaseContextBuilder WithDataModelPopulateProvider(IDataModelPopulateProvider dataModelPopulateProvider);
 
     /// <summary>
     /// Specify the Command Timeout
@@ -20,34 +50,16 @@
     IDatabaseContextBuilder WithCommandTimeout(int newCommandTimeout);
 
     /// <summary>
-    /// Specify the Connection String
+    /// Specify the Database Context Name
     /// </summary>
-    /// <param name="connectionString">Connection String</param>
+    /// <param name="dbContextName">Database Context Name</param>
     /// <returns>An instance of the Database Builder</returns>
-    IDatabaseContextBuilder WithConnectionString(string connectionString);
-
-    /// <summary>
-    /// Specify to build a Readonly Database Context
-    /// </summary>
-    /// <returns></returns>
-    IDatabaseContextBuilder AsReadonly();
+    IDatabaseContextBuilder WithDatabaseContextName(string dbContextName);
 
     /// <summary>
     /// Build
     /// </summary>
     /// <returns>An instance of the newly created Database Context</returns>
     IDatabaseContext Build();
-
-    /// <summary>
-    /// Build a Readonly Database Context
-    /// </summary>
-    /// <returns>An instance of a Readonly Database Context</returns>
-    IReadonlyDatabaseContext BuildReadonly();
-
-    /// <summary>
-    /// Build a Read Write Database Context
-    /// </summary>
-    /// <returns>An instance of a read/write Database Context</returns>
-    IReadWriteDatabaseContext BuildReadWrite();
   }
 }

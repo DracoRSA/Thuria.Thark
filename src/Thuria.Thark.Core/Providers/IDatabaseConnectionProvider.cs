@@ -1,7 +1,8 @@
 ﻿using System.Data;
+
 using Thuria.Thark.Core.Statement;
 
-namespace Thuria.Thark.Core.DataAccess
+namespace Thuria.Thark.Core.Providers
 {
   /// <summary>
   /// Database Connection Provider

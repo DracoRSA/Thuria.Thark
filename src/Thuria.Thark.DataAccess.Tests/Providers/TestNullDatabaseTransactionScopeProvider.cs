@@ -6,7 +6,7 @@ using FluentAssertions;
 using Thuria.Thark.Core.DataAccess;
 using Thuria.Thark.DataAccess.Providers;
 
-namespace Thuria.Thark.DataAccess.Tests
+namespace Thuria.Thark.DataAccess.Tests.Providers
 {
   [TestFixture]
   public class TestNullDatabaseTransactionScopeProvider

@@ -1,4 +1,6 @@
 ﻿using System.Transactions;
+
+using Thuria.Thark.Core.Providers;
 using Thuria.Thark.Core.DataAccess;
 
 namespace Thuria.Thark.DataAccess.Providers

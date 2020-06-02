@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Transactions;
 
-namespace Thuria.Thark.Core.DataAccess
+using Thuria.Thark.Core.DataAccess;
+
+namespace Thuria.Thark.Core.Providers
 {
   /// <summary>
   /// Database Transaction Provider

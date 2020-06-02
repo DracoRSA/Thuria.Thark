@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-using Thuria.Thark.Core.DataAccess;
+using Thuria.Thark.Core.Providers;
 using Thuria.Thark.Core.Statement;
 
 namespace Thuria.Thark.DataAccess.SqlServer

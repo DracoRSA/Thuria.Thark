@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Thuria.Thark.Core.DataAccess;
 using Thuria.Thark.DataModel.Attributes;
 
 namespace Thuria.Thark.DataModel.Tests
@@ -12,19 +13,19 @@ namespace Thuria.Thark.DataModel.Tests
     public Guid Id { get; set; }
 
     [ThuriaColumn("DisplayName", "Name")]
-    [ThuriaConditionColumn(TharkAction.Insert)]
-    [ThuriaConditionColumn(TharkAction.Update)]
+    [ThuriaConditionColumn(DbContextAction.Create)]
+    [ThuriaConditionColumn(DbContextAction.Update)]
     public string Name { get; set; }
 
-    [ThuriaConditionColumn(TharkAction.Insert, false)]
-    [ThuriaConditionColumn(TharkAction.Update, false)]
+    [ThuriaConditionColumn(DbContextAction.Create, false)]
+    [ThuriaConditionColumn(DbContextAction.Update, false)]
     public string Description { get; set; }
 
     [ThuriaColumn("Modified")]
     public DateTime ModifiedDate { get; set; }
 
     [ThuriaColumn("IsActive", IsInsertColumn = false)]
-    [ThuriaConditionColumn(TharkAction.Update, false)]
+    [ThuriaConditionColumn(DbContextAction.Update, false)]
     public bool IsActive { get; set; }
 
     [ThuriaRelationship("ForeignTest", TharkRelationshipType.OneToOne, "Id", "ThuriaTestId")]

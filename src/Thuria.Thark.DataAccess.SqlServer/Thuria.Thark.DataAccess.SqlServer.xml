@@ -4,6 +4,14 @@
         <name>Thuria.Thark.DataAccess.SqlServer</name>
     </assembly>
     <members>
+        <member name="T:Thuria.Thark.DataAccess.SqlServer.SqlDataAccessParameterProvider">
+            <summary>
+            Sql Data Access Parameter Provider
+            </summary>
+        </member>
+        <member name="M:Thuria.Thark.DataAccess.SqlServer.SqlDataAccessParameterProvider.Convert(Thuria.Thark.Core.Models.IDataAccessParameter)">
+            <inheritdoc />
+        </member>
         <member name="T:Thuria.Thark.DataAccess.SqlServer.SqlServerDbConnectionProvider">
             <summary>
             SQL Server Database Connection Provider

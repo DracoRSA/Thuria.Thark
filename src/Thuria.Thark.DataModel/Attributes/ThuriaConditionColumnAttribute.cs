@@ -1,4 +1,5 @@
 ﻿using System;
+using Thuria.Thark.Core.DataAccess;
 
 namespace Thuria.Thark.DataModel.Attributes
 {
@@ -11,18 +12,18 @@ namespace Thuria.Thark.DataModel.Attributes
     /// <summary>
     /// Thuria Condition Column Attribute constructor
     /// </summary>
-    /// <param name="tharkAction">Thark Action</param>
+    /// <param name="contextAction">Context Action</param>
     /// <param name="isRequired">Required indicator (Default True)</param>
-    public ThuriaConditionColumnAttribute(TharkAction tharkAction, bool isRequired = true)
+    public ThuriaConditionColumnAttribute(DbContextAction contextAction, bool isRequired = true)
     {
-      TharkAction = tharkAction;
+      ContextAction = contextAction;
       IsRequired  = isRequired;
     }
 
     /// <summary>
-    /// Thark Action
+    /// Context Action
     /// </summary>
-    public TharkAction TharkAction { get; set; }
+    public DbContextAction ContextAction { get; set; }
 
     /// <summary>
     /// Required Indicator

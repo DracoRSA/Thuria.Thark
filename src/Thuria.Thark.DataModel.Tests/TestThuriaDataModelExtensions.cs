@@ -6,6 +6,7 @@ using NUnit.Framework;
 using FluentAssertions;
 
 using Thuria.Calot.TestUtilities;
+using Thuria.Thark.Core.DataAccess;
 
 namespace Thuria.Thark.DataModel.Tests
 {
@@ -69,28 +70,41 @@ namespace Thuria.Thark.DataModel.Tests
       }
     }
 
-    [TestCase(TharkAction.Retrieve, "Id", "Id")]
-    [TestCase(TharkAction.Retrieve, "DisplayName", "Name")]
-    [TestCase(TharkAction.Retrieve, "Description", "Description")]
-    [TestCase(TharkAction.Retrieve, "Modified", "ModifiedDate")]
-    [TestCase(TharkAction.Retrieve, "IsActive", "IsActive")]
-    [TestCase(TharkAction.Insert, "Id", "Id", false)]
-    [TestCase(TharkAction.Insert, "DisplayName", "Name")]
-    [TestCase(TharkAction.Insert, "Description", "Description")]
-    [TestCase(TharkAction.Insert, "Modified", "ModifiedDate")]
-    [TestCase(TharkAction.Insert, "IsActive", "IsActive", false)]
-    [TestCase(TharkAction.Update, "Id", "Id", false)]
-    [TestCase(TharkAction.Update, "DisplayName", "Name")]
-    [TestCase(TharkAction.Update, "Description", "Description")]
-    [TestCase(TharkAction.Update, "Modified", "ModifiedDate")]
-    [TestCase(TharkAction.Update, "IsActive", "IsActive")]
-    public void GetThuriaDataModelColumns_ShouldReturnTheExpectedColumnAttributes(TharkAction tharkAction, string columnName, string propertyName, bool isExpectedInList = true)
+    [Test]
+    public void GetThuriaDataModelColumnName_GivenPropertyDoesNotExist_ShouldThrowException()
+    {
+      //---------------Set up test pack-------------------
+      var propertyName = "InvalidProperty";
+      var dataModel    = new ThuriaTestDataModel();
+      //---------------Assert Precondition----------------
+      //---------------Execute Test ----------------------
+      var exception = Assert.Throws<Exception>(() => dataModel.GetThuriaDataModelColumnName(propertyName));
+      //---------------Test Result -----------------------
+      exception.Message.Should().Be($"Property {propertyName} does not exist on {dataModel.GetType().FullName}");
+    }
+
+    [TestCase(DbContextAction.Retrieve, "Id", "Id")]
+    [TestCase(DbContextAction.Retrieve, "DisplayName", "Name")]
+    [TestCase(DbContextAction.Retrieve, "Description", "Description")]
+    [TestCase(DbContextAction.Retrieve, "Modified", "ModifiedDate")]
+    [TestCase(DbContextAction.Retrieve, "IsActive", "IsActive")]
+    [TestCase(DbContextAction.Create, "Id", "Id", false)]
+    [TestCase(DbContextAction.Create, "DisplayName", "Name")]
+    [TestCase(DbContextAction.Create, "Description", "Description")]
+    [TestCase(DbContextAction.Create, "Modified", "ModifiedDate")]
+    [TestCase(DbContextAction.Create, "IsActive", "IsActive", false)]
+    [TestCase(DbContextAction.Update, "Id", "Id", false)]
+    [TestCase(DbContextAction.Update, "DisplayName", "Name")]
+    [TestCase(DbContextAction.Update, "Description", "Description")]
+    [TestCase(DbContextAction.Update, "Modified", "ModifiedDate")]
+    [TestCase(DbContextAction.Update, "IsActive", "IsActive")]
+    public void GetThuriaDataModelColumns_ShouldReturnTheExpectedColumnAttributes(DbContextAction DbContextAction, string columnName, string propertyName, bool isExpectedInList = true)
     {
       //---------------Set up test pack-------------------
       var dataModel = new ThuriaTestDataModel();
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var dataModelColumns = dataModel.GetThuriaDataModelColumns(tharkAction);
+      var dataModelColumns = dataModel.GetThuriaDataModelColumns(DbContextAction);
       //---------------Test Result -----------------------
       var columnAttributes = dataModelColumns.ToList();
 
@@ -134,11 +148,11 @@ namespace Thuria.Thark.DataModel.Tests
       primaryKey.Should().BeNull();
     }
 
-    [TestCase(TharkAction.Retrieve, 5)]
-    [TestCase(TharkAction.Insert, 2)]
-    [TestCase(TharkAction.Update, 3)]
-    [TestCase(TharkAction.Delete, 5)]
-    public void GetThuriaDataModelConditions_GivenDataModelWithConditions_ShouldReturnAllExpectedConditions(TharkAction tharkAction, int noOfExpectedConditions)
+    [TestCase(DbContextAction.Retrieve, 5)]
+    [TestCase(DbContextAction.Create, 2)]
+    [TestCase(DbContextAction.Update, 3)]
+    [TestCase(DbContextAction.Delete, 5)]
+    public void GetThuriaDataModelConditions_GivenDataModelWithConditions_ShouldReturnAllExpectedConditions(DbContextAction DbContextAction, int noOfExpectedConditions)
     {
       //---------------Set up test pack-------------------
       var dataModel = new ThuriaTestDataModel
@@ -151,7 +165,7 @@ namespace Thuria.Thark.DataModel.Tests
         };
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var allConditions = dataModel.GetThuriaDataModelConditions(tharkAction);
+      var allConditions = dataModel.GetThuriaDataModelConditions(DbContextAction);
       //---------------Test Result -----------------------
       var dataModelConditions = allConditions.ToList();
 
@@ -159,9 +173,9 @@ namespace Thuria.Thark.DataModel.Tests
       dataModelConditions.Count.Should().Be(noOfExpectedConditions);
     }
 
-    [TestCase(TharkAction.Insert)]
-    [TestCase(TharkAction.Update)]
-    public void GetThuriaDataModelConditions_GivenDataModelWithNoConditions_ShouldReturnEmptyConditionList(TharkAction tharkAction)
+    [TestCase(DbContextAction.Create)]
+    [TestCase(DbContextAction.Update)]
+    public void GetThuriaDataModelConditions_GivenDataModelWithNoConditions_ShouldReturnEmptyConditionList(DbContextAction DbContextAction)
     {
       //---------------Set up test pack-------------------
       var dataModel = new ThuriaPocoDataModel
@@ -174,7 +188,7 @@ namespace Thuria.Thark.DataModel.Tests
         };
       //---------------Assert Precondition----------------
       //---------------Execute Test ----------------------
-      var allConditions = dataModel.GetThuriaDataModelConditions(tharkAction);
+      var allConditions = dataModel.GetThuriaDataModelConditions(DbContextAction);
       //---------------Test Result -----------------------
       var dataModelConditions = allConditions.ToList();
 
