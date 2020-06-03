@@ -73,6 +73,8 @@ namespace Thuria.Thark.DataAccess.Context
             throw new InvalidEnumArgumentException(nameof(dbContextAction), (int) dbContextAction, typeof(DbContextActionResult));
         }
 
+        DbConnection.Open();
+
         var resultData = new List<T>();
         if (mapData)
         {
@@ -92,6 +94,7 @@ namespace Thuria.Thark.DataAccess.Context
           dbCommand.ExecuteNonQuery();
         }
 
+        DbConnection.Close();
         actionResult.SetSuccessResult(resultData);
       }
       catch (Exception runtimeException)
