@@ -22,6 +22,18 @@ namespace Thuria.Thark.Core.DataAccess
     string DbContextName { get; set; }
 
     /// <summary>
+    /// Open the Database Connection (Async)
+    /// </summary>
+    /// <returns>A boolean indicating success</returns>
+    Task<bool> OpenAsync();
+
+    /// <summary>
+    /// Close the Database Connection (Async)
+    /// </summary>
+    /// <returns>A boolean indicating success</returns>
+    Task<bool> CloseAsync();
+
+    /// <summary>
     /// Execute an Action (Async)
     /// </summary>
     /// <typeparam name="T">Data Type of Data Model</typeparam>

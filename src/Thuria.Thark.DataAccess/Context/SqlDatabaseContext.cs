@@ -45,8 +45,9 @@ namespace Thuria.Thark.DataAccess.Context
                                                                                 string sqlCommandText = null,
                                                                                 IEnumerable<IDataAccessParameter> dataParameters = null)
     {
-      var actionResult = new DbContextActionResult<T>();
-      var mapData      = true;
+      var actionResult      = new DbContextActionResult<T>();
+      var mapData           = true;
+      var wasConnectionOpen = DbConnection?.State == ConnectionState.Open;
 
       try
       {
@@ -73,7 +74,7 @@ namespace Thuria.Thark.DataAccess.Context
             throw new InvalidEnumArgumentException(nameof(dbContextAction), (int) dbContextAction, typeof(DbContextActionResult));
         }
 
-        DbConnection.Open();
+        await OpenAsync();
 
         var resultData = new List<T>();
         if (mapData)
@@ -94,7 +95,11 @@ namespace Thuria.Thark.DataAccess.Context
           dbCommand.ExecuteNonQuery();
         }
 
-        DbConnection.Close();
+        if (!wasConnectionOpen)
+        {
+          await CloseAsync();
+        }
+
         actionResult.SetSuccessResult(resultData);
       }
       catch (Exception runtimeException)

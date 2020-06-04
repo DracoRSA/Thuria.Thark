@@ -127,6 +127,76 @@ namespace Thuria.Thark.DataAccess.Tests.Context
       }
     }
 
+    [Test]
+    public async Task OpenAsync_GivenDbConnectionClosed_ShouldCallOpenOnDbConnection()
+    {
+      //---------------Set up test pack-------------------
+      var dbConnection               = Substitute.For<IDbConnection>();
+      var databaseConnectionProvider = Substitute.For<IDatabaseConnectionProvider>();
+      databaseConnectionProvider.GetConnection(Arg.Any<string>()).Returns(dbConnection);
+
+      var dbContext = CreateDatabaseContext(databaseConnectionProvider: databaseConnectionProvider);
+      //---------------Assert Precondition----------------
+      //---------------Execute Test ----------------------
+      await dbContext.OpenAsync();
+      //---------------Test Result -----------------------
+      dbConnection.Received(1).Open();;
+    }
+
+    [Test]
+    public async Task OpenAsync_GivenDbConnectionOpen_ShouldNotCallOpenOnDbConnection()
+    {
+      //---------------Set up test pack-------------------
+      var dbConnection = Substitute.For<IDbConnection>();
+      dbConnection.State.Returns(ConnectionState.Open);
+
+      var databaseConnectionProvider = Substitute.For<IDatabaseConnectionProvider>();
+      databaseConnectionProvider.GetConnection(Arg.Any<string>()).Returns(dbConnection);
+
+      var dbContext = CreateDatabaseContext(databaseConnectionProvider: databaseConnectionProvider);
+      //---------------Assert Precondition----------------
+      //---------------Execute Test ----------------------
+      await dbContext.OpenAsync();
+      //---------------Test Result -----------------------
+      dbConnection.DidNotReceive().Open();;
+    }
+
+    [Test]
+    public async Task CloseAsync_GivenDbConnectionClosed_ShouldNotCallCloseOnDbConnection()
+    {
+      //---------------Set up test pack-------------------
+      var dbConnection = Substitute.For<IDbConnection>();
+      dbConnection.State.Returns(ConnectionState.Closed);
+
+      var databaseConnectionProvider = Substitute.For<IDatabaseConnectionProvider>();
+      databaseConnectionProvider.GetConnection(Arg.Any<string>()).Returns(dbConnection);
+
+      var dbContext = CreateDatabaseContext(databaseConnectionProvider: databaseConnectionProvider);
+      //---------------Assert Precondition----------------
+      //---------------Execute Test ----------------------
+      await dbContext.CloseAsync();
+      //---------------Test Result -----------------------
+      dbConnection.DidNotReceive().Close();
+    }
+
+    [Test]
+    public async Task CloseAsync_GivenDbConnectionOpen_ShouldCallCloseOnDbConnection()
+    {
+      //---------------Set up test pack-------------------
+      var dbConnection = Substitute.For<IDbConnection>();
+      dbConnection.State.Returns(ConnectionState.Open);
+
+      var databaseConnectionProvider = Substitute.For<IDatabaseConnectionProvider>();
+      databaseConnectionProvider.GetConnection(Arg.Any<string>()).Returns(dbConnection);
+
+      var dbContext = CreateDatabaseContext(databaseConnectionProvider: databaseConnectionProvider);
+      //---------------Assert Precondition----------------
+      //---------------Execute Test ----------------------
+      await dbContext.CloseAsync();
+      //---------------Test Result -----------------------
+      dbConnection.Received(1).Close();
+    }
+
     [TestCase(DbContextAction.Retrieve, CommandType.Text)]
     [TestCase(DbContextAction.Create, CommandType.Text)]
     [TestCase(DbContextAction.Update, CommandType.Text)]
@@ -277,6 +347,52 @@ namespace Thuria.Thark.DataAccess.Tests.Context
       var _ = await dbContext.ExecuteActionAsync(DbContextAction.Create, dataModel);
       //---------------Test Result -----------------------
       dbCommand.Received(1).ExecuteNonQuery();
+    }
+
+    [Test]
+    public async Task ExecuteActionAsync_GivenClosedConnection_ShouldCallOpenAndCloseOnDbConnection()
+    {
+      //---------------Set up test pack-------------------
+      var dataModel = new FakeTestDataModel { Id = Guid.NewGuid() };
+
+      var dbConnectionState = ConnectionState.Closed;
+      var dbConnection = Substitute.For<IDbConnection>();
+      dbConnection.State.Returns(info => dbConnectionState);
+      dbConnection.When(connection => connection.Open())
+                  .Do(info => dbConnectionState = ConnectionState.Open);
+
+      var databaseConnectionProvider = Substitute.For<IDatabaseConnectionProvider>();
+      databaseConnectionProvider.GetConnection(Arg.Any<string>()).Returns(dbConnection);
+
+      var dbContext = CreateDatabaseContext(databaseConnectionProvider: databaseConnectionProvider);
+      //---------------Assert Precondition----------------
+      //---------------Execute Test ----------------------
+      var _ = await dbContext.ExecuteActionAsync(DbContextAction.Create, dataModel);
+      //---------------Test Result -----------------------
+      dbConnection.Received(1).Open();
+      dbConnection.Received(1).Close();
+    }
+
+    [Test]
+    public async Task ExecuteActionAsync_GivenOpenConnection_ShouldNotCallCloseOnDbConnection()
+    {
+      //---------------Set up test pack-------------------
+      var dataModel = new FakeTestDataModel { Id = Guid.NewGuid() };
+
+      var dbCommand    = Substitute.For<IDbCommand>();
+      var dbConnection = Substitute.For<IDbConnection>();
+      dbConnection.State.Returns(ConnectionState.Open);
+      dbConnection.CreateCommand().Returns(dbCommand);
+
+      var databaseConnectionProvider = Substitute.For<IDatabaseConnectionProvider>();
+      databaseConnectionProvider.GetConnection(Arg.Any<string>()).Returns(dbConnection);
+
+      var dbContext = CreateDatabaseContext(databaseConnectionProvider: databaseConnectionProvider);
+      //---------------Assert Precondition----------------
+      //---------------Execute Test ----------------------
+      var _ = await dbContext.ExecuteActionAsync(DbContextAction.Create, dataModel);
+      //---------------Test Result -----------------------
+      dbConnection.DidNotReceive().Close();
     }
 
     [Test]

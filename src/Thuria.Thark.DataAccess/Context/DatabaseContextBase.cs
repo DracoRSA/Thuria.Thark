@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Collections.Generic;
 
 using System.Threading.Tasks;
 using Thuria.Thark.Core.Models;
@@ -79,6 +79,60 @@ namespace Thuria.Thark.DataAccess.Context
     /// Database Transaction Provider
     /// </summary>
     protected IDatabaseTransactionProvider DatabaseTransactionProvider { get; private set; }
+
+    /// <inheritdoc />
+    public Task<bool> OpenAsync()
+    {
+      var taskCompletionSource = new TaskCompletionSource<bool>();
+      var openResult           = true;
+
+      try
+      {
+        if (DbConnection?.State == ConnectionState.Closed)
+        {
+          DbConnection.Open();
+        }
+        else
+        {
+          openResult = false;
+        }
+
+        taskCompletionSource.SetResult(openResult);
+      }
+      catch (Exception runtimeException)
+      {
+        taskCompletionSource.SetException(runtimeException);
+      }
+
+      return taskCompletionSource.Task;
+    }
+
+    /// <inheritdoc />
+    public Task<bool> CloseAsync()
+    {
+      var taskCompletionSource = new TaskCompletionSource<bool>();
+      var openResult = true;
+
+      try
+      {
+        if (DbConnection?.State == ConnectionState.Open)
+        {
+          DbConnection.Close();
+        }
+        else
+        {
+          openResult = false;
+        }
+
+        taskCompletionSource.SetResult(openResult);
+      }
+      catch (Exception runtimeException)
+      {
+        taskCompletionSource.SetException(runtimeException);
+      }
+
+      return taskCompletionSource.Task;
+    }
 
     /// <inheritdoc />
     public abstract Task<IDbContextActionResult<T>> ExecuteActionAsync<T>(DbContextAction dbContextAction,
