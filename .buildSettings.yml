@@ -1,9 +1,9 @@
-VERSION: 0.2.0
+VERSION: 0.5.0
 CONFIGURATION: Debug
 NUGETPACKAGES:
   - Core:
     Name: Thark.Core
-    Version: 0.2.0
+    Version: 0.5.0
     Location: src/Thuria.Thark.Core
     IsBeta: true
     Frameworks:
@@ -14,7 +14,7 @@ NUGETPACKAGES:
       - netcoreapp3.0
   - StatementBuilder:
     Name: Thark.StatementBuilder
-    Version: 0.2.0
+    Version: 0.5.0
     Location: src/Thuria.Thark.StatementBuilder
     IsBeta: true
     Frameworks:
@@ -25,7 +25,7 @@ NUGETPACKAGES:
       - netcoreapp3.0
   - DataAccess:
     Name: Thark.DataAccess
-    Version: 0.4.0
+    Version: 0.5.0
     Location: src/Thuria.Thark.DataAccess
     IsBeta: true
     Frameworks:
@@ -36,7 +36,7 @@ NUGETPACKAGES:
       - netcoreapp3.0
   - DataAccessSqlServer:
     Name: Thark.DataAccess.SqlServer
-    Version: 0.2.0
+    Version: 0.5.0
     Location: src/Thuria.Thark.DataAccess.SqlServer
     IsBeta: true
     Frameworks:
@@ -47,7 +47,7 @@ NUGETPACKAGES:
       - netcoreapp3.0
   - DataAccessSqlite:
     Name: Thark.DataAccess.Sqlite
-    Version: 0.2.0
+    Version: 0.5.0
     Location: src/Thuria.Thark.DataAccess.Sqlite
     IsBeta: true
     Frameworks:
@@ -58,7 +58,7 @@ NUGETPACKAGES:
       - netcoreapp3.0
   - DataModel:
     Name: Thark.DataModel
-    Version: 0.2.0
+    Version: 0.5.0
     Location: src/Thuria.Thark.DataModel
     IsBeta: true
     Frameworks:

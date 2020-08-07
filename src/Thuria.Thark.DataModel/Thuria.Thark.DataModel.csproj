@@ -9,7 +9,7 @@
     <PackageProjectUrl>https://github.com/DracoRSA/Thuria.Thark</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DracoRSA/Thuria.Thark</RepositoryUrl>
     <PackageTags>Thuria Thark DataAccess ORM</PackageTags>
-    <Version>0.2.0-beta</Version>
+    <Version>0.5.0-beta</Version>
     <Description>The Thark Data Model package contains all the required functionality to decorate POCO objects and define the behaviour of the Thark Data Access package.</Description>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Thuria.Zitidar.Extensions" Version="1.1.0" />
+    <PackageReference Include="Thuria.Zitidar.Extensions" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
